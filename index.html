@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X_Stein - بوتات تليجرام والقناة</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="photo_2025-07-07_18-38-15 (2).jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="photo_2025-07-07_18-38-15 (2).jpg">
+    <link rel="apple-touch-icon" href="photo_2025-07-07_18-38-15 (2).jpg">
+
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,71 +19,96 @@
     <div class="container">
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Header -->
+            <!-- Header Section -->
             <div class="header-section">
-                <h1><i class="fab fa-telegram-plane"></i>اكس شتاين </h1>
-                <p class="subtitle">بوتات تليجرام مدعومة بالذكاء الاصطناعي</p>
+                <h1>اكس شتاين 📱</h1>
+                <p id="typing-text" class="typing-animation"></p>
+                <button class="btn join-channel-btn glass-btn" onclick="window.open('https://t.me/x_stein', '_blank')">
+                    <span class="btn-text">انضم للقناة</span>
+                    <span class="btn-icon">📢</span>
+                </button>
             </div>
 
-            <!-- Bot Card -->
-            <div class="bot-card-main">
-                <div class="bot-info-section">
-                    <div class="bot-details">
-                        <h2>اكس شتاين</h2>
-                        <p>بوتات تليجرام مدعومة بالذكاء الاصطناعي </p>
-                        <div class="tags">
-                            <span>مجاني</span>
-                            <span>سريع</span>
-                            <span>ذكي</span>
-                        </div>
+            <!-- Bot Carousel Section -->
+            <div class="bot-carousel-container">
+                <div class="carousel-header">
+                    <h2>البوتات المتاحة 🤖</h2>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev-btn" onclick="prevSlide()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="slide-indicator">
+                            <span class="current-slide">1</span> / <span class="total-slides">1</span>
+                        </span>
+                        <button class="carousel-btn next-btn" onclick="nextSlide()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="action-buttons">
-                    <a href="https://t.me/MCQTFAIbot" class="btn-main" target="_blank">
-                        <i class="fas fa-play"></i> ابدأ البوت
-                    </a>
-                    <a href="https://t.me/x_stein" class="btn-secondary" target="_blank">
-                        <i class="fas fa-users"></i> انضم للقناة
-                    </a>
+
+                <div class="bot-carousel">
+                    <div class="bot-slides-container">
+                        <!-- Slide 1 -->
+                        <div class="bot-slide active">
+                            <div class="bot-card-mini active-bot">
+                                <div class="bot-avatar-mini">🎯</div>
+                                <h3>بوت الأسئلة</h3>
+                                <p>مدعوم بالذكاء الاصطناعي</p>
+                                <div class="bot-features-mini">
+                                    <span class="bot-feature-mini">📝 MCQ</span>
+                                    <span class="bot-feature-mini">✅ T/F</span>
+                                </div>
+                                <button class="chat-btn-mini telegram-btn" onclick="window.open('https://t.me/your_quiz_bot', '_blank')">
+                                    <i class="fab fa-telegram-plane"></i> ابدأ على تليجرام
+                                </button>
+                            </div>
+
+                            <div class="bot-card-mini coming-soon">
+                                <div class="bot-avatar-mini">🤖</div>
+                                <h3>Argos</h3>
+                                <p>مساعد ذكي متقدم للمحادثات</p>
+                                <div class="bot-features-mini">
+                                    <span class="bot-feature-mini">🧠 ذكي</span>
+                                    <span class="bot-feature-mini">💬 محادثة</span>
+                                </div>
+                                <button class="chat-btn-mini disabled" disabled>
+                                    قريباً...
+                                </button>
+                            </div>
+
+                            <div class="bot-card-mini coming-soon">
+                                <div class="bot-avatar-mini">📄</div>
+                                <h3>PDF Editor</h3>
+                                <p>محرر ملفات PDF المتقدم</p>
+                                <div class="bot-features-mini">
+                                    <span class="bot-feature-mini">📝 تحرير</span>
+                                    <span class="bot-feature-mini">📄 PDF</span>
+                                </div>
+                                <button class="chat-btn-mini disabled" disabled>
+                                    قريباً...
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <!-- Features Grid -->
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-question-circle"></i>
-                    <h3>اسئلة خيارات متعددة</h3>
-                    <p>أسئلة احترافية بخيارات متعددة</p>
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>&copy; X Stein 2025</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/your_account" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/your_channel" target="_blank" class="social-link">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <i class="fas fa-check-double"></i>
-                    <h3>صح وخطأ</h3>
-                    <p>أسئلة سريعة للمراجعة</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <h3>سرعة فائقة</h3>
-                    <p>إجابات فورية ودقيقة</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-gift"></i>
-                    <h3>مجاني تماماً</h3>
-                    <p>جميع الميزات بدون تكلفة</p>
-                </div>
-            </div>
+            </footer>
         </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p>&copy; 2025 X Stein</p>
-                <div class="social-links">
-                    <a href="https://t.me/x_stein" target="_blank" title="قناة X_Stein"><i class="fas fa-broadcast-tower"></i></a>
-                    <a href="https://t.me/MCQTFAIbot" target="_blank" title="بوت الأسئلة الذكي"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://github.com/x-stein" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script src="script.js"></script>
