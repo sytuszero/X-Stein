@@ -294,7 +294,7 @@ body {
     padding: 8px 40px;
     border-top: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 20px;
-    margin: 10px -20px 0 -20px;
+    margin: 2px -20px 0 -20px;
     width: calc(100% + 40px);
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(15px);
@@ -374,11 +374,15 @@ body {
 /* Carousel Header */
 .carousel-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 25px;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+.carousel-controls {
+    display: none;
 }
 
 .carousel-header h2 {
