@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add typing effect to description
     const typingText = document.getElementById('typing-text');
     if (typingText) {
-        const text = 'بوتات تليجرام مدعومة بالذكاء الاصطناعي';
+        const text = 'بوتات تليكرام مدعومة بالذكاء الاصطناعي';
         typingText.textContent = '';
         let i = 0;
 
