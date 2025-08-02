@@ -18,9 +18,11 @@ body {
 }
 
 .container {
-    max-width: 1200px; /* Increased max width for better spacing */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .main-content {
@@ -196,6 +198,87 @@ body {
     color: #10b981;
     font-size: 0.9rem;
     font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header-section {
+        padding: 30px 15px;
+    }
+
+    .bot-carousel-container {
+        padding: 15px;
+    }
+
+    .bot-slide {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .bot-card-mini {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-section {
+        padding: 20px 10px;
+    }
+
+    .bot-carousel-container {
+        padding: 10px;
+    }
+
+    .carousel-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .carousel-controls {
+        justify-content: space-between;
+    }
+
+    .bot-features-mini {
+        flex-wrap: wrap;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .bot-card-mini {
+        transform: none !important;
+    }
+
+    .carousel-btn {
+        padding: 12px; /* Larger touch target */
+    }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 500px) {
+    .header-section {
+        min-height: 150px;
+    }
+
+    .bot-carousel-container {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+/* Better touch scrolling */
+.bot-carousel {
+    touch-action: pan-x pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
 }
 
 .bot-description {
