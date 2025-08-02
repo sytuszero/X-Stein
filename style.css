@@ -577,6 +577,10 @@ body {
     font-size: 0.9rem;
     width: 100%;
     box-shadow: 0 2px 6px rgba(56, 189, 248, 0.2);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chat-btn-mini:hover {
