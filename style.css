@@ -279,6 +279,19 @@ body {
     touch-action: pan-x pinch-zoom;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent pull-to-refresh in mobile browsers */
+body {
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Improve touch performance */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 .bot-description {
@@ -403,6 +416,15 @@ body {
 .bot-slides-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.bot-slides-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .bot-slide {
@@ -413,6 +435,10 @@ body {
     padding: 10px 0;
     flex-wrap: nowrap;
     align-items: stretch;
+    scroll-snap-align: start;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    user-select: none;
 }
 
 .bot-card-mini {
