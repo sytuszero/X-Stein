@@ -34,7 +34,7 @@ body {
     flex-direction: column;
     gap: 30px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -63,6 +63,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+}
+
+.header-icon {
+    width: 28px;
+    height: 28px;
+    opacity: 0.9;
+    order: -1;
+}
+
+.btn-robot-icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.9;
 }
 
 /* Typing Animation */
@@ -102,9 +116,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-    flex: 1;
-    min-width: 250px;
-    max-width: 320px;
+    width: 100%;
 }
 
 .bot-card-mini:hover {
@@ -231,6 +243,10 @@ body {
     color: rgba(156, 163, 175, 0.8) !important;
     cursor: not-allowed !important;
     border: 1px solid rgba(107, 114, 128, 0.2) !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    line-height: normal !important;
+    font-family: inherit !important;
 }
 
 .chat-btn-mini.disabled:hover {
@@ -238,8 +254,8 @@ body {
     background: rgba(107, 114, 128, 0.3) !important;
 }
 
-/* Carousel */
-.bot-carousel-container {
+/* Bot Cards Container */
+.bot-cards-container {
     margin: 15px -20px -10px -20px;
     background: rgba(30, 41, 59, 0.6);
     border-radius: 20px;
@@ -249,41 +265,28 @@ body {
     width: calc(100% + 40px);
 }
 
-.bot-carousel {
-    overflow: hidden;
-    border-radius: 15px;
-    touch-action: pan-x pinch-zoom;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.bot-slides-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.bot-slides-container::-webkit-scrollbar {
-    display: none;
-}
-
-.bot-slide {
-    min-width: 100%;
-    display: flex;
-    justify-content: space-between;
+.bot-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     padding: 10px 0;
-    flex-wrap: nowrap;
     align-items: stretch;
-    scroll-snap-align: start;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
+}
+
+.cards-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.cards-header h2 {
+    color: #f1f5f9;
+    font-size: 1.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Footer */
@@ -371,30 +374,16 @@ body {
     box-shadow: 0 12px 40px rgba(56, 189, 248, 0.4);
 }
 
-/* Carousel Header */
-.carousel-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-    gap: 15px;
-}
 
-.carousel-controls {
-    display: none;
-}
-
-.carousel-header h2 {
-    color: #f1f5f9;
-    font-size: 1.5rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 /* Media Queries */
+@media (max-width: 1000px) {
+    .bot-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -410,20 +399,18 @@ body {
         font-size: 1.8rem;
     }
 
-    .bot-carousel-container {
+    .bot-cards-container {
         margin: 15px -10px -10px -10px;
         width: calc(100% + 20px);
         padding: 30px 20px 20px 20px;
     }
 
-    .bot-slide {
-        flex-wrap: wrap;
+    .bot-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
-        justify-content: center;
     }
 
     .bot-card-mini {
-        width: calc(50% - 10px);
         min-width: 250px;
         max-width: none;
     }
@@ -456,21 +443,21 @@ body {
         gap: 8px;
     }
 
-    .bot-carousel-container {
+    .bot-cards-container {
         margin: 15px 0 -10px 0;
         width: 100%;
         padding: 20px 15px 10px 15px;
     }
 
-    .bot-slide {
-        flex-direction: column;
-        align-items: center;
+    .bot-cards-grid {
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
     .bot-card-mini {
         width: 100%;
         max-width: 300px;
+        margin: 0 auto;
     }
 
     .footer {
