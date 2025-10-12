@@ -325,7 +325,7 @@ body {
 
 /* Video Section */
 .video-section {
-    margin: 30px -20px;
+    margin: 0 -20px;
     background: rgba(30, 41, 59, 0.6);
     border-radius: 20px;
     padding: 40px;
@@ -741,7 +741,7 @@ body {
     }
 
     .video-section {
-        margin: 30px -10px;
+        margin: 0 -10px;
         width: calc(100% + 20px);
         padding: 30px 20px;
     }
@@ -1107,7 +1107,7 @@ body {
     }
     
     .video-section {
-        margin: 20px 0;
+        margin: 0;
         width: 100%;
         padding: 25px 15px;
     }
