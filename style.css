@@ -38,6 +38,28 @@ body {
     margin: 0 auto;
 }
 
+/* Typing Animation */
+.typing-animation {
+    position: relative;
+    display: inline-block;
+}
+
+.typing-animation::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.typing-animation.typing-complete::after {
+    display: none;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
 /* Header Section */
 .header-section {
     text-align: center;
