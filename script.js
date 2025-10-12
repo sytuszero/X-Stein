@@ -26,6 +26,20 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Telegram Web App Integration
+let tg = window.Telegram?.WebApp;
+
+// Initialize Telegram Web App
+if (tg) {
+    tg.ready();
+    tg.expand();
+    tg.enableClosingConfirmation();
+    
+    // Set theme parameters
+    tg.setHeaderColor('#1e293b');
+    tg.setBackgroundColor('#0f172a');
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Set initial state for animations - only for elements that exist
@@ -70,4 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Add typing effect to description - mobile optimized
+    const typingText = document.getElementById('typing-text');
+    if (typingText) {
+        const text = 'بوتات تليكرام مدعومة بالذكاء الاصطناعي';
+        typingText.textContent = '';
+        let i = 0;
+        
+        // Check if device is mobile for slower typing
+        const isMobile = window.innerWidth <= 768;
+        const typingSpeed = isMobile ? 100 : 80; // Slower on mobile
+        
+        const typeWriter = () => {
+            if (i < text.length) {
+                typingText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                // Remove the blinking cursor after typing is complete
+                setTimeout(() => {
+                    typingText.classList.add('typing-complete');
+                }, 500);
+            }
+        };
+        
+        // Start typing with a short delay
+        setTimeout(typeWriter, 200);
+    }
 });
