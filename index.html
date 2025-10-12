@@ -1,244 +1,201 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X Stein</title>
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Xstein2.png">
-    <link rel="shortcut icon" type="image/png" href="Xstein2.png">
-    <link rel="apple-touch-icon" href="Xstein2.png">
+// Add animation on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Header Section -->
-            <div class="header-section">
-                <h1>
-                    <img src="XStein.png" alt="X Stein Logo" class="header-logo">
-                </h1>
-                <p id="typing-text" class="typing-animation"></p>
-                <a href="https://t.me/x_stein" class="btn join-channel-btn glass-btn" target="_blank" rel="noopener">
-                    <span class="btn-text">انضم للقناة</span>
-                    <span class="btn-icon"><img src="https://img.icons8.com/?size=100&id=jZ1z64hEYYLW&format=png&color=FFFFFF" alt="Robot Icon" class="btn-robot-icon"></span>
-                </a>
-            </div>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
 
-            <!-- Bot Cards Section -->
-            <div class="bot-cards-container">
-                <div class="cards-header">
-                    <h2>البوتات المتاحة 🤖</h2>
-                </div>
+// Observe all sections and cards
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial state for animations
+    const animatedElements = document.querySelectorAll('section, .bot-card, .stat-card');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 
-                <div class="bot-cards-grid">
-                    <div class="bot-card-mini active-bot">
-                        <div class="bot-avatar-mini">📑</div>
-                        <h3>Quiz Bot</h3>
-                        <p>مدعوم بالذكاء الاصطناعي</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">🔠 MCQ</span>
-                            <span class="bot-feature-mini">✗✓ T/F</span>
-                        </div>
-                        <a href="https://t.me/MCQTFAIbot" class="chat-btn-mini telegram-btn" target="_blank" rel="noopener">
-                            <i class="fab fa-telegram-plane"></i> ابدأ على التليكرام
-                        </a>
-                    </div>
+    // Add click tracking for buttons (optional analytics)
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Add a subtle click effect
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 150);
+            
+            // You can add analytics tracking here
+            console.log('Button clicked:', btn.textContent.trim());
+        });
+    });
 
-                    <div class="bot-card-mini active-bot">
-                        <div class="bot-avatar-mini"><i class="fas fa-file-pdf"></i></div>
-                        <h3>محرر ملفات PDF</h3>
-                        <p>محرر ملفات PDF المتقدم</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini"><i class="fas fa-edit"></i> تحرير</span>
-                            <span class="bot-feature-mini"><i class="fas fa-file-pdf"></i> PDF</span>
-                        </div>
-                        <a href="https://t.me/Pdf_manipulator_bot" class="chat-btn-mini telegram-btn" target="_blank" rel="noopener">
-                            <i class="fab fa-telegram-plane"></i>  ابدأ على التليكرام 
-                        </a>
-                    </div>
+    // Add hover effect for bot cards
+    document.querySelectorAll('.bot-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
 
-                    <div class="bot-card-mini coming-soon">
-                        <div class="bot-avatar-mini"><i class="fas fa-project-diagram"></i></div>
-                        <h3>خرائط ذهنية</h3>
-                        <p>إنشاء خرائط ذهنية</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">☊ خرائط</span>
-                            <span class="bot-feature-mini">📖 تلخيص</span>
-                        </div>
-                        <button class="chat-btn-mini disabled" disabled>
-                            قريباً...
-                        </button>
-                    </div>
+    // Animate stats numbers
+    const animateStats = () => {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const finalValue = stat.textContent;
+            if (finalValue.includes('K')) {
+                const numValue = parseFloat(finalValue.replace('K', ''));
+                animateNumber(stat, 0, numValue, 'K', 2000);
+            } else if (finalValue.includes('%')) {
+                const numValue = parseInt(finalValue.replace('%', ''));
+                animateNumber(stat, 0, numValue, '%', 2000);
+            } else if (!isNaN(parseInt(finalValue))) {
+                const numValue = parseInt(finalValue);
+                animateNumber(stat, 0, numValue, '', 2000);
+            }
+        });
+    };
 
-                    <div class="bot-card-mini coming-soon">
-                        <div class="bot-avatar-mini">🤖</div>
-                        <h3>Argos</h3>
-                        <p>مساعد ذكي متقدم للمحادثات</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">🧠 ذكي</span>
-                            <span class="bot-feature-mini"><i class="fas fa-comments"></i> محادثة</span>
-                        </div>
-                        <button class="chat-btn-mini disabled" disabled>
-                            قريباً...
-                        </button>
-                    </div>
-                </div>
-            </div>
+    const animateNumber = (element, start, end, suffix, duration) => {
+        const startTime = performance.now();
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = start + (end - start) * easeOutQuart(progress);
+            
+            if (suffix === 'K') {
+                element.textContent = current.toFixed(1) + suffix;
+            } else {
+                element.textContent = Math.floor(current) + suffix;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        };
+        requestAnimationFrame(update);
+    };
 
-            <!-- Pricing Plans Section -->
-            <div class="pricing-section">
-                <div class="pricing-header">
-                    <h2>اشتراكات Quiz Bot المدعوم بالذكاء الاصطناعي</h2>
-                    <p>اختر الخطة المناسبة لك</p>
-                </div>
+    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
-                <div class="pricing-cards">
-                    <!-- Free Plan -->
-                    <div class="pricing-card free-plan">
-                        <div class="plan-header">
-                            <h3>المجاني</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اقل من 30 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>مدة انتظار 1 دقيقة بين ارسال الملفات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 6 ملفات في اليوم</span>
-                            </div>
-                            <div class="feature disabled">
-                                <i class="fas fa-times"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature disabled">
-                                <i class="fas fa-times"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">مجاني</span>
-                        </div>
-                    </div>
+    // Trigger stats animation when stats section is visible
+    const statsSection = document.querySelector('.stats-section');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
 
-                    <!-- VIP 1 Month Plan -->
-                    <div class="pricing-card vip-plan popular">
-                        <div class="popular-badge">الأكثر شعبية</div>
-                        <div class="plan-header">
-                            <h3>VIP شهر واحد</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اكثر من 40 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>لا توجد مدة انتظار</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 30 ملف يومياً</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">5000</span>
-                            <span class="currency">دينار عراقي</span>
-                        </div>
-                    </div>
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
 
-                    <!-- VIP 2 Months Plan -->
-                    <div class="pricing-card vip-plan">
-                        <div class="plan-header">
-                            <h3>VIP شهرين</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اكثر من 40 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>لا توجد مدة انتظار</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 30 ملف يومياً</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">8000</span>
-                            <span class="currency">دينار عراقي</span>
-                        </div>
-                    </div>
-                </div>
+    // Add typing effect to description
+    const typingText = document.getElementById('typing-text');
+    if (typingText) {
+        const text = ' بوتات تليكرام مدعومة بالذكاء الاصطناعي';
+        typingText.textContent = '';
+        let i = 0;
 
-                <div class="pricing-footer">
-                    <p>للاشتراك تواصل مع مطور البوت عبر التليكرام <a href="https://t.me/Sytus" target="_blank">@Sytus</a></p>
-                </div>
-            </div>
+        const typeWriter = () => {
+            if (i < text.length) {
+                typingText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80); // Keep the same typing speed
+            } else {
+                // Remove the blinking cursor after typing is complete
+                setTimeout(() => {
+                    typingText.classList.add('typing-complete');
+                }, 500);
+            }
+        };
 
-            <!-- Video Demo Section -->
-            <div class="video-section">
-                <div class="video-header">
-                    <h2>مقارنة Quiz Bot مع ChatGPT</h2>
-                    <p>Quiz Bot: ٦ ملفات يومياً مجاناً | ChatGPT: ٣ ملفات يومياً فقط</p>
-                </div>
-                <div class="video-container">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1I-JSasb6rvdtR6U2-jhAP6EqgFr57moI/preview" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
+        // Start typing immediately
+        setTimeout(typeWriter, 100); // Very short delay, just enough for DOM to be ready
+    }
 
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="footer-content">
-                    <p>&copy; X Stein Agency 2025</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/xstein.ai" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://t.me/x_stein" target="_blank" class="social-link">
-                            <i class="fab fa-telegram-plane"></i>
-                        </a>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+    // Add particle effect to header (simple version)
+    createParticles();
+});
 
-    <script src="script.js"></script>
-</body>
-</html>
+function createParticles() {
+    const header = document.querySelector('.header');
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = '4px';
+        particle.style.height = '4px';
+        particle.style.background = 'rgba(255, 255, 255, 0.5)';
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        
+        header.appendChild(particle);
+    }
+}
+
+// Add CSS animation for particles
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+        50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+`;
+document.head.appendChild(style);
+
+// Add copy to clipboard functionality for bot usernames
+document.querySelectorAll('.bot-card h3, .channel-details h3').forEach(username => {
+    username.style.cursor = 'pointer';
+    username.title = 'Click to copy username';
+    
+    username.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(username.textContent);
+            
+            // Show feedback
+            const originalText = username.textContent;
+            username.textContent = 'Copied!';
+            username.style.color = '#27ae60';
+            
+            setTimeout(() => {
+                username.textContent = originalText;
+                username.style.color = '';
+            }, 1000);
+        } catch (err) {
+            console.log('Failed to copy text');
+        }
+    });
+});
+
+// Bot Cards - No carousel functionality needed anymore
+// Cards are now displayed in a static grid layout
