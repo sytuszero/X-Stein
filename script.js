@@ -2,9 +2,12 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
@@ -23,10 +26,10 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all sections and cards
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial state for animations
-    const animatedElements = document.querySelectorAll('section, .bot-card, .stat-card');
+    // Set initial state for animations - only for elements that exist
+    const animatedElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .video-section, .pricing-section');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -34,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Add click tracking for buttons (optional analytics)
-    document.querySelectorAll('.btn').forEach(btn => {
+    // Add click tracking for buttons
+    document.querySelectorAll('.chat-btn-mini, .telegram-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             // Add a subtle click effect
             btn.style.transform = 'scale(0.95)';
@@ -43,159 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.style.transform = '';
             }, 150);
             
-            // You can add analytics tracking here
             console.log('Button clicked:', btn.textContent.trim());
         });
     });
 
-    // Add hover effect for bot cards
-    document.querySelectorAll('.bot-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-
-    // Animate stats numbers
-    const animateStats = () => {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        statNumbers.forEach(stat => {
-            const finalValue = stat.textContent;
-            if (finalValue.includes('K')) {
-                const numValue = parseFloat(finalValue.replace('K', ''));
-                animateNumber(stat, 0, numValue, 'K', 2000);
-            } else if (finalValue.includes('%')) {
-                const numValue = parseInt(finalValue.replace('%', ''));
-                animateNumber(stat, 0, numValue, '%', 2000);
-            } else if (!isNaN(parseInt(finalValue))) {
-                const numValue = parseInt(finalValue);
-                animateNumber(stat, 0, numValue, '', 2000);
-            }
-        });
-    };
-
-    const animateNumber = (element, start, end, suffix, duration) => {
-        const startTime = performance.now();
-        const update = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const current = start + (end - start) * easeOutQuart(progress);
-            
-            if (suffix === 'K') {
-                element.textContent = current.toFixed(1) + suffix;
-            } else {
-                element.textContent = Math.floor(current) + suffix;
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            }
-        };
-        requestAnimationFrame(update);
-    };
-
-    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
-
-    // Trigger stats animation when stats section is visible
-    const statsSection = document.querySelector('.stats-section');
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateStats();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
-
-    // Add typing effect to description
-    const typingText = document.getElementById('typing-text');
-    if (typingText) {
-        const text = ' بوتات تليكرام مدعومة بالذكاء الاصطناعي';
-        typingText.textContent = '';
-        let i = 0;
-
-        const typeWriter = () => {
-            if (i < text.length) {
-                typingText.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80); // Keep the same typing speed
-            } else {
-                // Remove the blinking cursor after typing is complete
+    // Add copy to clipboard functionality for bot usernames
+    document.querySelectorAll('.bot-card-mini h3').forEach(username => {
+        username.style.cursor = 'pointer';
+        username.title = 'Click to copy username';
+        username.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(username.textContent);
+                // Show feedback
+                const originalText = username.textContent;
+                username.textContent = 'Copied!';
+                username.style.color = '#27ae60';
                 setTimeout(() => {
-                    typingText.classList.add('typing-complete');
-                }, 500);
+                    username.textContent = originalText;
+                    username.style.color = '';
+                }, 1000);
+            } catch (err) {
+                console.log('Failed to copy text');
             }
-        };
-
-        // Start typing immediately
-        setTimeout(typeWriter, 100); // Very short delay, just enough for DOM to be ready
-    }
-
-    // Add particle effect to header (simple version)
-    createParticles();
-});
-
-function createParticles() {
-    const header = document.querySelector('.header');
-    const particleCount = 20;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.width = '4px';
-        particle.style.height = '4px';
-        particle.style.background = 'rgba(255, 255, 255, 0.5)';
-        particle.style.borderRadius = '50%';
-        particle.style.pointerEvents = 'none';
-        particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        
-        header.appendChild(particle);
-    }
-}
-
-// Add CSS animation for particles
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
-        50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-    }
-`;
-document.head.appendChild(style);
-
-// Add copy to clipboard functionality for bot usernames
-document.querySelectorAll('.bot-card h3, .channel-details h3').forEach(username => {
-    username.style.cursor = 'pointer';
-    username.title = 'Click to copy username';
-    
-    username.addEventListener('click', async () => {
-        try {
-            await navigator.clipboard.writeText(username.textContent);
-            
-            // Show feedback
-            const originalText = username.textContent;
-            username.textContent = 'Copied!';
-            username.style.color = '#27ae60';
-            
-            setTimeout(() => {
-                username.textContent = originalText;
-                username.style.color = '';
-            }, 1000);
-        } catch (err) {
-            console.log('Failed to copy text');
-        }
+        });
     });
 });
-
-// Bot Cards - No carousel functionality needed anymore
-// Cards are now displayed in a static grid layout
