@@ -113,28 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 200);
     }
 
-    // Video iframe fallback detection
-    const videoIframe = document.querySelector('.video-container iframe');
-    const videoFallback = document.querySelector('.video-fallback');
-    
-    if (videoIframe && videoFallback) {
-        // Check if iframe loads successfully
-        videoIframe.addEventListener('error', () => {
-            videoFallback.style.display = 'block';
-        });
-        
-        // Also check after a timeout
-        setTimeout(() => {
-            try {
-                // Try to access iframe content (will fail if blocked)
-                const iframeDoc = videoIframe.contentDocument || videoIframe.contentWindow.document;
-                if (!iframeDoc) {
-                    videoFallback.style.display = 'block';
-                }
-            } catch (e) {
-                // If we can't access iframe content, show fallback
-                videoFallback.style.display = 'block';
-            }
-        }, 3000);
-    }
 });
