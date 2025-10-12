@@ -448,6 +448,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .price {
@@ -510,7 +513,7 @@ body {
 
 .pricing-footer p {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .pricing-footer a {
