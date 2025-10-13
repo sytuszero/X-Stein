@@ -46,28 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
-        // Mobile: All containers fade in on scroll with staggered timing
-        const animatedElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .video-section, .pricing-section');
-        animatedElements.forEach((el, index) => {
+        // Mobile: Section containers fade in on scroll
+        const sectionContainers = document.querySelectorAll('.bot-cards-container, .pricing-section, .video-section');
+        sectionContainers.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            el.style.transitionDelay = `${index * 0.1}s`; // Stagger the animations
+            el.style.transitionDelay = `${index * 0.2}s`; // Stagger the section animations
             observer.observe(el);
         });
     } else {
         // Desktop: Only video section fades in on scroll, others load immediately
-        const videoElements = document.querySelectorAll('.video-section');
-        videoElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+        const videoSection = document.querySelector('.video-section');
+        if (videoSection) {
+            videoSection.style.opacity = '0';
+            videoSection.style.transform = 'translateY(30px)';
+            videoSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(videoSection);
+        }
         
-        // Desktop: Immediately show bot cards and pricing plans
-        const immediateElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .pricing-section');
-        immediateElements.forEach(el => {
+        // Desktop: Immediately show bot cards and pricing sections
+        const immediateSections = document.querySelectorAll('.bot-cards-container, .pricing-section');
+        immediateSections.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
         });
