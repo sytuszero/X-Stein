@@ -42,14 +42,23 @@ if (tg) {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial state for animations - only for elements that exist
+    // Set initial state for all animated elements
     const animatedElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .video-section, .pricing-section');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(el);
     });
+    
+    // Immediately show first two sections (bots and plans) with a quick fade-in
+    const immediateElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .pricing-section');
+    setTimeout(() => {
+        immediateElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }, 100); // Small delay for smooth appearance
 
     // Add click tracking for buttons
     document.querySelectorAll('.chat-btn-mini, .telegram-btn').forEach(btn => {
