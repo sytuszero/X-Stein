@@ -13,8 +13,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Add animation on scroll
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -400px 0px'
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
-        // Mobile: Section containers fade in on scroll with immediate succession
+        // Mobile: Standard website fade-in behavior
         const sectionContainers = document.querySelectorAll('.bot-cards-container, .pricing-section, .video-section');
         sectionContainers.forEach((el, index) => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            el.style.transitionDelay = `${index * 0.05}s`; // Very short delay between sections
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            el.style.transitionDelay = `${index * 0.15}s`; // Natural stagger like other sites
             observer.observe(el);
         });
     } else {
