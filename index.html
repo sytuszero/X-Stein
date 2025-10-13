@@ -1,294 +1,123 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>X Stein - بوتات تليكرام مدعومة بالذكاء الاصطناعي</title>
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Add animation on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Telegram Web App Integration
+let tg = window.Telegram?.WebApp;
+
+// Initialize Telegram Web App
+if (tg) {
+    tg.ready();
+    tg.expand();
+    tg.enableClosingConfirmation();
     
-    <!-- Telegram Mini App Configuration -->
-    <meta name="telegram-mini-app" content="true">
-    <meta name="telegram-web-app" content="true">
-    <meta name="theme-color" content="#1e293b">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
+    // Set theme parameters
+    tg.setHeaderColor('#1e293b');
+    tg.setBackgroundColor('#0f172a');
+}
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Xstein2.png">
-    <link rel="shortcut icon" type="image/png" href="Xstein2.png">
-    <link rel="apple-touch-icon" href="Xstein2.png">
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial state for animations - exclude first two sections (bots and plans)
+    const animatedElements = document.querySelectorAll('.video-section');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+    
+    // Ensure bot cards and pricing sections are visible immediately
+    const immediateElements = document.querySelectorAll('.bot-card-mini, .pricing-card, .pricing-section');
+    immediateElements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    });
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Header Section -->
-            <div class="header-section">
-                <h1>
-                    <img src="XStein.png" alt="X Stein Logo" class="header-logo">
-                </h1>
-                <p id="typing-text" class="typing-animation"></p>
-                <a href="https://t.me/x_stein" class="btn join-channel-btn glass-btn" target="_blank" rel="noopener">
-                    <span class="btn-text">انضم للقناة</span>
-                    <span class="btn-icon"><img src="https://img.icons8.com/?size=100&id=jZ1z64hEYYLW&format=png&color=FFFFFF" alt="Robot Icon" class="btn-robot-icon"></span>
-                </a>
-            </div>
+    // Add click tracking for buttons
+    document.querySelectorAll('.chat-btn-mini, .telegram-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Add a subtle click effect
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 150);
+            
+            console.log('Button clicked:', btn.textContent.trim());
+        });
+    });
 
-            <!-- Bot Cards Section -->
-            <div class="bot-cards-container">
-                <div class="cards-header">
-                    <h2>البوتات المتاحة 🤖</h2>
-                </div>
+    // Add copy to clipboard functionality for bot usernames
+    document.querySelectorAll('.bot-card-mini h3').forEach(username => {
+        username.style.cursor = 'pointer';
+        username.title = 'Click to copy username';
+        username.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(username.textContent);
+                // Show feedback
+                const originalText = username.textContent;
+                username.textContent = 'Copied!';
+                username.style.color = '#27ae60';
+                setTimeout(() => {
+                    username.textContent = originalText;
+                    username.style.color = '';
+                }, 1000);
+            } catch (err) {
+                console.log('Failed to copy text');
+            }
+        });
+    });
 
-                <div class="bot-cards-grid">
-                    <div class="bot-card-mini active-bot">
-                        <div class="bot-avatar-mini">📑</div>
-                        <h3>Quiz Bot</h3>
-                        <p>مدعوم بالذكاء الاصطناعي</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">🔠 MCQ</span>
-                            <span class="bot-feature-mini">✗✓ T/F</span>
-                        </div>
-                        <a href="https://t.me/MCQTFAIbot" class="chat-btn-mini telegram-btn" target="_blank" rel="noopener">
-                            <i class="fab fa-telegram-plane"></i> ابدأ على التليكرام
-                        </a>
-                    </div>
+    // Add typing effect to description - mobile optimized
+    const typingText = document.getElementById('typing-text');
+    if (typingText) {
+        const text = 'بوتات تليكرام مدعومة بالذكاء الاصطناعي';
+        typingText.textContent = '';
+        let i = 0;
+        
+        // Check if device is mobile for slower typing
+        const isMobile = window.innerWidth <= 768;
+        const typingSpeed = isMobile ? 100 : 80; // Slower on mobile
+        
+        const typeWriter = () => {
+            if (i < text.length) {
+                typingText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                // Remove the blinking cursor after typing is complete
+                setTimeout(() => {
+                    typingText.classList.add('typing-complete');
+                }, 500);
+            }
+        };
+        
+        // Start typing with a short delay
+        setTimeout(typeWriter, 200);
+    }
 
-                    <div class="bot-card-mini active-bot">
-                        <div class="bot-avatar-mini"><i class="fas fa-file-pdf"></i></div>
-                        <h3>محرر ملفات PDF</h3>
-                        <p>محرر ملفات PDF المتقدم</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini"><i class="fas fa-edit"></i> تحرير</span>
-                            <span class="bot-feature-mini"><i class="fas fa-file-pdf"></i> PDF</span>
-                        </div>
-                        <a href="https://t.me/Pdf_manipulator_bot" class="chat-btn-mini telegram-btn" target="_blank" rel="noopener">
-                            <i class="fab fa-telegram-plane"></i>  ابدأ على التليكرام 
-                        </a>
-                    </div>
-
-                    <div class="bot-card-mini coming-soon">
-                        <div class="bot-avatar-mini"><i class="fas fa-project-diagram"></i></div>
-                        <h3>خرائط ذهنية</h3>
-                        <p>إنشاء خرائط ذهنية</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">☊ خرائط</span>
-                            <span class="bot-feature-mini">📖 تلخيص</span>
-                        </div>
-                        <button class="chat-btn-mini disabled" disabled>
-                            قريباً...
-                        </button>
-                    </div>
-
-                    <div class="bot-card-mini coming-soon">
-                        <div class="bot-avatar-mini">🤖</div>
-                        <h3>Argos</h3>
-                        <p>مساعد ذكي متقدم للمحادثات</p>
-                        <div class="bot-features-mini">
-                            <span class="bot-feature-mini">🧠 ذكي</span>
-                            <span class="bot-feature-mini"><i class="fas fa-comments"></i> محادثة</span>
-                        </div>
-                        <button class="chat-btn-mini disabled" disabled>
-                            قريباً...
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pricing Plans Section -->
-            <div class="pricing-section">
-                <div class="pricing-header">
-                    <h2>اشتراكات Quiz Bot المدعوم بالذكاء الاصطناعي</h2>
-                    <p>اختر الخطة المناسبة لك</p>
-                </div>
-
-                <div class="pricing-cards">
-                    <!-- Free Plan -->
-                    <div class="pricing-card free-plan">
-                        <div class="plan-header">
-                            <h3>المجاني</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اقل من 30 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>مدة انتظار 1 دقيقة بين ارسال الملفات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 6 ملفات في اليوم</span>
-                            </div>
-                            <div class="feature disabled">
-                                <i class="fas fa-times"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature disabled">
-                                <i class="fas fa-times"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">مجاني</span>
-                        </div>
-                    </div>
-
-                    <!-- VIP 1 Month Plan -->
-                    <div class="pricing-card vip-plan popular">
-                        <div class="popular-badge">الأكثر شعبية</div>
-                        <div class="plan-header">
-                            <h3>VIP شهر واحد</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اكثر من 40 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>لا توجد مدة انتظار</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 30 ملف يومياً</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">5000</span>
-                            <span class="currency">دينار عراقي</span>
-                        </div>
-                    </div>
-
-                    <!-- VIP 2 Months Plan -->
-                    <div class="pricing-card vip-plan">
-                        <div class="plan-header">
-                            <h3>VIP شهرين</h3>
-                        </div>
-                        <div class="plan-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>عدد الاسئلة اكثر من 40 سؤال للملزمة</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>لا توجد مدة انتظار</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>ارسال 30 ملف يومياً</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>حفظ الاختبارات</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>تحميل الاختبارات على شكل PDF</span>
-                            </div>
-                        </div>
-                        <div class="plan-price">
-                            <span class="price">8000</span>
-                            <span class="currency">دينار عراقي</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pricing-footer">
-                    <p>للاشتراك تواصل مع مطور البوت عبر التليكرام <a href="https://t.me/Sytus" target="_blank">@Sytus</a></p>
-                </div>
-            </div>
-
-            <!-- Video Demo Section -->
-            <div class="video-section">
-                <div class="video-header">
-                    <div class="comparison-container">
-                        <div class="comparison-item quiz-bot">
-                            <div class="comparison-content">
-                                <h3>Quiz Bot</h3>
-                                <div class="comparison-feature">
-                                    <span class="feature-number"><span dir="ltr">6</span></span>
-                                    <span class="feature-text">ملفات في اليوم</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="comparison-vs">
-                            <span>VS</span>
-                        </div>
-                        
-                        <div class="comparison-item chatgpt">
-                            <div class="comparison-content">
-                                <h3>ChatGPT</h3>
-                                <div class="comparison-feature">
-                                    <span class="feature-number"><span dir="ltr">3</span></span>
-                                    <span class="feature-text">ملفات فقط في اليوم</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/qGNhBCKMyXQ" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        allowfullscreen
-                        webkitallowfullscreen
-                        mozallowfullscreen
-                        allow="fullscreen; autoplay; encrypted-media">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="footer-content">
-                    <p>&copy; X Stein Agency 2025</p>
-                    
-                    <!-- Payment Methods -->
-                    <div class="payment-methods">
-                        <div class="payment-icon custom-payment">
-                            <img src="Zain cash.png" alt="Zain Cash" class="payment-image">
-                        </div>
-                        <div class="payment-icon custom-payment">
-                            <img src="SuperQI.png" alt="SuperQI" class="payment-image">
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/xstein.ai" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://t.me/x_stein" target="_blank" class="social-link">
-                            <i class="fab fa-telegram-plane"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@Xstein-ai" target="_blank" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <!-- Telegram Web App Script -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+});
