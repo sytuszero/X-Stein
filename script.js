@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Countdown Timer for Translation Bot
     const countdownElement = document.getElementById('translation-countdown');
     if (countdownElement) {
-        // Set countdown to 1 week from now
-        const countdownDate = new Date();
-        countdownDate.setDate(countdownDate.getDate() + 7);
+        // Fixed global launch date - set to a specific future date
+        // This ensures all users see the same countdown that doesn't restart
+        const countdownDate = new Date('2025-10-30T00:00:00'); // Set your launch date here (October 30, 2025)
         
         const updateCountdown = () => {
             const now = new Date().getTime();
