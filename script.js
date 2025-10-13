@@ -14,7 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Add animation on scroll
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -400px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
-        // Mobile: Section containers fade in on scroll
+        // Mobile: Section containers fade in on scroll with immediate succession
         const sectionContainers = document.querySelectorAll('.bot-cards-container, .pricing-section, .video-section');
         sectionContainers.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            el.style.transitionDelay = `${index * 0.2}s`; // Stagger the section animations
+            el.style.transitionDelay = `${index * 0.05}s`; // Very short delay between sections
             observer.observe(el);
         });
     } else {
