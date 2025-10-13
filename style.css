@@ -1358,8 +1358,10 @@ body {
     }
     
     .comparison-feature {
-        flex-direction: column;
-        gap: 8px;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
     }
     
     .feature-number {
