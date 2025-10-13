@@ -32,7 +32,7 @@ body {
 .main-content {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -351,6 +351,129 @@ body {
     font-size: 1.1rem;
 }
 
+/* Modern Comparison Styling */
+.comparison-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.comparison-item {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.comparison-item.quiz-bot::before {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.comparison-item.chatgpt::before {
+    background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
+.comparison-item:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-item:hover::before {
+    opacity: 1;
+}
+
+
+.comparison-content h3 {
+    color: #f1f5f9;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.comparison-feature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.feature-number {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    min-width: 40px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.comparison-item.quiz-bot .feature-number {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.comparison-item.chatgpt .feature-number {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.feature-text {
+    color: #94a3b8;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.comparison-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #3b82f6;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+    }
+}
+
 
 
 .video-container {
@@ -651,10 +774,15 @@ body {
     font-size: 1.3rem;
     transition: all 0.3s ease;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 50%;
     background: rgba(56, 189, 248, 0.15);
     border: 1px solid rgba(56, 189, 248, 0.3);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
 }
 
 .social-links a:hover {
@@ -664,6 +792,61 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
+
+/* Payment Methods Styling */
+.payment-methods {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.payment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.payment-icon:hover {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.25);
+    border-color: #38bdf8;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+}
+
+.payment-icon i {
+    transition: all 0.3s ease;
+}
+
+/* Custom Payment Images */
+.payment-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.custom-payment {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.custom-payment:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: #38bdf8;
+}
+
 
 /* Glass Button */
 .glass-btn {
@@ -880,7 +1063,7 @@ body {
     }
     
     .main-content {
-        gap: 25px;
+        gap: 12px;
     }
     
     .header-section {
@@ -1032,6 +1215,24 @@ body {
     .social-links a {
         padding: 8px;
         font-size: 1.2rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .payment-methods {
+        gap: 10px;
+        margin: 10px 0;
+    }
+    
+    .payment-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .payment-image {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -1118,6 +1319,32 @@ body {
 
     .video-header p {
         font-size: 0.8rem;
+    }
+
+    .comparison-container {
+        gap: 12px;
+        margin: 12px 0;
+    }
+
+    .comparison-item {
+        min-width: 150px;
+        padding: 20px;
+    }
+
+
+    .comparison-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .feature-number {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+
+    .comparison-vs {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
     }
 
     .video-container {
