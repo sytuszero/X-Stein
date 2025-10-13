@@ -135,4 +135,47 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 200);
     }
 
+    // Countdown Timer for Translation Bot
+    const countdownElement = document.getElementById('translation-countdown');
+    if (countdownElement) {
+        // Set countdown to 1 week from now
+        const countdownDate = new Date();
+        countdownDate.setDate(countdownDate.getDate() + 7);
+        
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countdownDate.getTime() - now;
+            
+            if (distance < 0) {
+                // Countdown finished
+                countdownElement.innerHTML = `
+                    <div class="countdown-finished">
+                        <span style="color: #27ae60; font-weight: 700;">متاح الآن!</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update the countdown display
+            const daysElement = document.getElementById('days');
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+            if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+            if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+            if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+        };
+        
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+
 });
