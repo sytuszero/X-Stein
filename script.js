@@ -87,32 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Add typing effect to description - mobile optimized
+    // Set description text normally
     const typingText = document.getElementById('typing-text');
     if (typingText) {
         const text = 'بوتات تليكرام مدعومة بالذكاء الاصطناعي';
-        typingText.textContent = '';
-        let i = 0;
-        
-        // Check if device is mobile for slower typing
-        const isMobile = window.innerWidth <= 768;
-        const typingSpeed = isMobile ? 120 : 100; // Slightly slower for better readability
-        
-        const typeWriter = () => {
-            if (i < text.length) {
-                typingText.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, typingSpeed);
-            } else {
-                // Remove the blinking cursor after typing is complete
-                setTimeout(() => {
-                    typingText.classList.add('typing-complete');
-                }, 1000);
-            }
-        };
-        
-        // Start typing with a short delay
-        setTimeout(typeWriter, 500);
+        typingText.textContent = text;
     }
 
     // Countdown Timer for Translation Bot
