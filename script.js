@@ -86,26 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add copy to clipboard functionality for bot usernames
-    document.querySelectorAll('.bot-card-mini h3').forEach(username => {
-        username.style.cursor = 'pointer';
-        username.title = 'Click to copy username';
-        username.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(username.textContent);
-                // Show feedback
-                const originalText = username.textContent;
-                username.textContent = 'Copied!';
-                username.style.color = '#27ae60';
-                setTimeout(() => {
-                    username.textContent = originalText;
-                    username.style.color = '';
-                }, 1000);
-            } catch (err) {
-                console.log('Failed to copy text');
-            }
-        });
-    });
 
     // Add typing effect to description - mobile optimized
     const typingText = document.getElementById('typing-text');
