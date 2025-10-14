@@ -1234,6 +1234,7 @@ body {
         min-height: auto;
         border-radius: 15px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        width: 100%;
         max-width: 300px;
         margin: 0 auto;
     }
@@ -1290,6 +1291,9 @@ body {
         border-color: rgba(168, 85, 247, 0.4);
         background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
         box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
     
     .pricing-card.premium-bundle:hover {
@@ -1364,6 +1368,29 @@ body {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+    
+    /* Mobile Footer Layout - Side by Side */
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .footer-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .footer-separator {
+        width: 1px;
+        height: 30px;
+        background: rgba(148, 163, 184, 0.3);
+        margin: 0 10px;
     }
     
     .payment-image {
