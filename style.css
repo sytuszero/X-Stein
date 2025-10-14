@@ -645,17 +645,19 @@ body {
 /* Coming Soon Badge */
 .coming-soon-badge {
     position: absolute;
-    top: -5px;
+    top: -8px;
     right: -5px;
     background: linear-gradient(135deg, #a855f7, #3b82f6);
     color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 8px 18px;
+    border-radius: 0 0 0 15px;
     font-size: 0.8rem;
     font-weight: 600;
     z-index: 10;
     box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
     animation: badgePulse 2s ease-in-out infinite;
+    text-align: center;
+    white-space: nowrap;
 }
 
 @keyframes badgePulse {
@@ -692,21 +694,23 @@ body {
 
 .popular-badge {
     position: absolute;
-    bottom: -1px;
+    top: -5px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #22c55e, #16a34a);
     color: white;
     padding: 6px 16px;
-    border-radius: 15px 15px 0 0;
-    font-size: 0.7rem;
+    border-radius: 0 0 15px 15px;
+    font-size: 0.75rem;
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+    z-index: 10;
 }
 
 .plan-header {
     text-align: center;
     margin-bottom: 25px;
+    margin-top: 15px;
     position: relative;
     z-index: 2;
 }
