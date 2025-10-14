@@ -724,7 +724,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-top: auto;
+    margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
@@ -1250,12 +1250,13 @@ body {
     }
     
     .plan-features {
-        gap: 12px;
+        gap: 8px;
     }
     
     .feature {
         font-size: 0.75rem;
-        gap: 8px;
+        gap: 6px;
+        margin-bottom: 6px;
     }
     
     .feature i {
@@ -1283,6 +1284,23 @@ body {
         padding: 6px 12px;
         right: -3px;
         top: -3px;
+    }
+    
+    /* Premium Bundle Mobile Styling */
+    .pricing-card.premium-bundle {
+        border-color: rgba(168, 85, 247, 0.4);
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+    }
+    
+    .pricing-card.premium-bundle:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(168, 85, 247, 0.3);
+        border-color: rgba(168, 85, 247, 0.6);
+    }
+    
+    .pricing-card.premium-bundle::before {
+        background: linear-gradient(45deg, transparent, rgba(168, 85, 247, 0.3), transparent);
     }
     
     .price {
