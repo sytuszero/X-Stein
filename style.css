@@ -23,6 +23,10 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /* Telegram Mini App specific fixes */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
 }
 
 /* Allow text selection only for specific elements */
@@ -224,6 +228,67 @@ body {
     top: 15px;
     right: 20px;
     z-index: 10;
+}
+
+/* Telegram Mini App specific header fixes */
+.telegram-mini-app .header-section {
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+.telegram-mini-app .header-top-right {
+    top: 25px;
+    right: 20px;
+}
+
+/* Telegram Mini App viewport fixes */
+.telegram-mini-app {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for better mobile support */
+    overflow: hidden;
+}
+
+.telegram-mini-app .container {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.telegram-mini-app .main-content {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Fix for Telegram's safe area */
+.telegram-mini-app .header-section {
+    padding-top: max(20px, env(safe-area-inset-top, 20px));
+}
+
+/* Telegram Mini App mobile specific fixes */
+@media (max-width: 768px) {
+    .telegram-mini-app .header-top-right {
+        top: max(25px, calc(env(safe-area-inset-top, 0px) + 15px));
+        right: max(15px, env(safe-area-inset-right, 15px));
+    }
+    
+    .telegram-mini-app .header-top-right .pricing-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .telegram-mini-app .header-top-right {
+        top: max(20px, calc(env(safe-area-inset-top, 0px) + 10px));
+        right: max(10px, env(safe-area-inset-right, 10px));
+    }
+    
+    .telegram-mini-app .header-top-right .pricing-btn {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        border-radius: 8px;
+    }
 }
 
 .header-top-right .pricing-btn {
