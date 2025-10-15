@@ -16,7 +16,6 @@ body {
     text-align: right;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
     -webkit-user-select: none;
@@ -27,6 +26,115 @@ body {
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
     position: relative;
+    width: 100%;
+    min-width: 100%;
+}
+
+/* Hide scrollbar but keep scrolling functionality */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Firefox - hide scrollbar */
+html {
+    scrollbar-width: none;
+}
+
+/* For older browsers */
+body {
+    -ms-overflow-style: none;
+}
+
+/* Desktop overflow handling */
+@media (min-width: 769px) {
+    /* Allow horizontal scrolling on desktop when needed */
+    html, body {
+        overflow-x: auto;
+        width: 100%;
+    }
+    
+    /* Ensure containers allow horizontal scrolling on desktop */
+    .container {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        overflow-x: auto;
+    }
+    
+    /* Allow main content to extend beyond viewport */
+    .main-content {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        overflow-x: visible;
+    }
+    
+    /* Ensure elements with calc(100% + 40px) can extend beyond viewport */
+    .header-section,
+    .bot-cards-container,
+    .video-section,
+    .pricing-section,
+    .footer {
+        overflow-x: visible;
+    }
+}
+
+/* Mobile scrollbar hiding */
+@media (max-width: 768px) {
+    /* Hide all scrollbars on mobile */
+    * {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+    
+    *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    /* Ensure body and html have no scrollbars on mobile */
+    html, body {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        overflow-x: hidden;
+    }
+    
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    /* Hide scrollbars for all containers on mobile */
+    .container,
+    .main-content,
+    .bot-cards-container,
+    .pricing-section,
+    .video-section {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+    
+    .container::-webkit-scrollbar,
+    .main-content::-webkit-scrollbar,
+    .bot-cards-container::-webkit-scrollbar,
+    .pricing-section::-webkit-scrollbar,
+    .video-section::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
 }
 
 /* Allow text selection only for specific elements */
@@ -45,11 +153,12 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: none;
+    margin: 0;
+    padding: 20px 40px;
     width: 100%;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .main-content {
@@ -57,8 +166,8 @@ body {
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
 }
 
 /* Typing Animation */
@@ -246,12 +355,38 @@ body {
     height: 100vh;
     height: 100dvh; /* Dynamic viewport height for better mobile support */
     overflow: hidden;
+    direction: ltr !important;
 }
 
 .telegram-mini-app .container {
     height: 100%;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    direction: rtl !important;
+}
+
+/* Hide body scrollbar in Telegram Mini App */
+.telegram-mini-app body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Style container scrollbar in Telegram Mini App */
+.telegram-mini-app .container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.telegram-mini-app .container::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 3px;
+}
+
+.telegram-mini-app .container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(14, 165, 233, 0.5));
+    border-radius: 3px;
+}
+
+.telegram-mini-app .container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.7), rgba(14, 165, 233, 0.7));
 }
 
 .telegram-mini-app .main-content {
@@ -1048,6 +1183,7 @@ body {
     font-size: 1.6rem;
     font-weight: 700;
     color: #38bdf8;
+    font-family: 'Orbitron', 'Exo 2', 'Rajdhani', 'Arial Black', sans-serif;
 }
 
 .currency {
