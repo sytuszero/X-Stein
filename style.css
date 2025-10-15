@@ -218,6 +218,22 @@ body {
     z-index: 2;
 }
 
+/* Top Right Pricing Button */
+.header-top-right {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 10;
+}
+
+.header-top-right .pricing-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-radius: 15px;
+    min-width: auto;
+    white-space: nowrap;
+}
+
 .logo-container {
     position: relative;
     display: inline-block;
@@ -308,9 +324,11 @@ body {
 
 .header-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .scroll-indicator {
@@ -1204,6 +1222,26 @@ body {
         inset 0 -1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Pricing Button Styling */
+.pricing-btn {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05));
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.pricing-btn:hover {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.1));
+    border-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 
+        0 12px 40px rgba(34, 197, 94, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.pricing-btn .btn-icon {
+    color: #22c55e;
+}
+
 
 
 /* Media Queries */
@@ -1355,6 +1393,17 @@ body {
         width: 20px;
         height: 20px;
     }
+    
+    .header-top-right {
+        top: 8px;
+        right: 10px;
+    }
+    
+    .header-top-right .pricing-btn {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        border-radius: 8px;
+    }
 
     .bot-cards-container {
         margin: 15px 0 -10px 0;
@@ -1452,6 +1501,28 @@ body {
         width: 100%;
         max-width: 280px;
         margin: 0 auto;
+    }
+    
+    .header-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .header-buttons .glass-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .header-top-right {
+        top: 10px;
+        right: 15px;
+    }
+    
+    .header-top-right .pricing-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        border-radius: 10px;
     }
     
     .bot-cards-container {
@@ -2018,6 +2089,17 @@ body {
     
     .feature {
         font-size: 0.75rem;
+    }
+    
+    .header-top-right {
+        top: 6px;
+        right: 8px;
+    }
+    
+    .header-top-right .pricing-btn {
+        padding: 3px 6px;
+        font-size: 0.6rem;
+        border-radius: 6px;
     }
 }
 
