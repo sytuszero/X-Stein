@@ -39,6 +39,20 @@ if (tg) {
     // Set theme parameters
     tg.setHeaderColor('#1e293b');
     tg.setBackgroundColor('#0f172a');
+    
+    // Add Telegram Mini App class to body for specific styling
+    document.body.classList.add('telegram-mini-app');
+    
+    // Disable Telegram's default header
+    tg.setHeaderColor('transparent');
+    
+    // Handle viewport changes
+    tg.onEvent('viewportChanged', () => {
+        // Recalculate layout when viewport changes
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 100);
+    });
 }
 
 // Initialize when DOM is loaded
