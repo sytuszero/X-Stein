@@ -2038,6 +2038,30 @@ body {
     .glass-btn:hover {
         transform: none !important;
     }
+    
+    /* Touch-friendly active states for mobile */
+    .pricing-card:active {
+        transform: translateY(-3px);
+        border-color: rgba(56, 189, 248, 0.3);
+        box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .pricing-card:active::before {
+        animation: glassShine 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .pricing-card.premium-bundle:active {
+        transform: translateY(-3px);
+        border-color: rgba(168, 85, 247, 0.6);
+        box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
+    }
+    
+    .pricing-card.popular:active {
+        transform: translateY(-3px);
+        border-color: rgba(34, 197, 94, 0.6);
+        box-shadow: 0 15px 40px rgba(34, 197, 94, 0.2);
+    }
 }
 
 /* Countdown Timer Styles */
