@@ -1186,6 +1186,11 @@ body {
     font-family: 'Orbitron', 'Exo 2', 'Rajdhani', 'Arial Black', sans-serif;
 }
 
+/* Free price text with Alexandria font */
+.price.free-price {
+    font-family: 'Alexandria', 'Lexend', sans-serif;
+}
+
 .currency {
     font-size: 0.9rem;
     color: #94a3b8;
@@ -2347,8 +2352,8 @@ body {
     }
 }
 
-/* Countdown Timer Styles */
-.countdown-container {
+/* Coming Soon Styles */
+.coming-soon-container {
     width: 100%;
     padding: 12px 24px;
     background: rgba(107, 114, 128, 0.3);
@@ -2361,83 +2366,33 @@ body {
     justify-content: center;
 }
 
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: nowrap;
-    width: 100%;
+.coming-soon-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    font-family: 'Alexandria', 'Lexend', sans-serif;
+    text-align: center;
 }
 
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-width: 35px;
-    padding: 4px 2px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.countdown-number {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1;
-    margin-bottom: 1px;
-}
-
-.countdown-label {
-    font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    font-weight: 500;
-}
-
-/* Mobile responsive countdown */
+/* Mobile responsive coming soon */
 @media (max-width: 768px) {
-    .countdown-container {
+    .coming-soon-container {
         padding: 12px 20px;
         min-height: 44px;
     }
     
-    .countdown-timer {
-        gap: 4px;
-    }
-    
-    .countdown-item {
-        min-width: 30px;
-        padding: 3px 1px;
-    }
-    
-    .countdown-number {
-        font-size: 0.85rem;
-    }
-    
-    .countdown-label {
-        font-size: 0.55rem;
+    .coming-soon-text {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .countdown-container {
+    .coming-soon-container {
         padding: 12px 18px;
         min-height: 42px;
     }
     
-    .countdown-item {
-        min-width: 28px;
-        padding: 2px 1px;
-    }
-    
-    .countdown-number {
-        font-size: 0.8rem;
-    }
-    
-    .countdown-label {
-        font-size: 0.5rem;
+    .coming-soon-text {
+        font-size: 0.85rem;
     }
 }
