@@ -1241,6 +1241,11 @@ body {
     color: white;
 }
 
+.feature.feature-yellow-check i {
+    background: #eab308;
+    color: white;
+}
+
 .feature.disabled i {
     background: #ef4444;
     color: white;
