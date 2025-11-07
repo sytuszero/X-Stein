@@ -754,7 +754,7 @@ body {
 
 .bot-cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
     padding: 10px 0;
     align-items: stretch;
@@ -964,7 +964,7 @@ body {
     margin: 30px -20px;
     background: rgba(30, 41, 59, 0.6);
     border-radius: 20px;
-    padding: 40px;
+    padding: 40px 40px 10px 40px;
     border: 1px solid rgba(56, 189, 248, 0.2);
     backdrop-filter: blur(15px);
     width: calc(100% + 40px);
@@ -989,9 +989,9 @@ body {
 
 .pricing-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 120px;
     justify-items: center;
 }
 
@@ -1261,7 +1261,10 @@ body {
 
 .pricing-footer {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    margin-top: 40px;
+    margin-bottom: 0px;
     border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
 
@@ -1496,7 +1499,123 @@ body {
     white-space: nowrap;
 }
 
+/* Announcement Section */
+.announcement-section {
+    margin: 20px -20px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(34, 197, 94, 0.15));
+    border-radius: 15px;
+    padding: 20px 30px;
+    border: 2px solid rgba(56, 189, 248, 0.3);
+    backdrop-filter: blur(10px);
+    width: calc(100% + 40px);
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+}
+
+.announcement-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.announcement-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #eab308, #f59e0b);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(234, 179, 8, 0.6);
+    }
+}
+
+.announcement-text {
+    flex: 1;
+    text-align: center;
+}
+
+.announcement-text p {
+    color: #e2e8f0;
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.announcement-text p strong {
+    color: #38bdf8;
+}
+
+.announcement-features {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.feature-badge {
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-label {
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+.feature-badge.free {
+    background: rgba(234, 179, 8, 0.2);
+    color: #eab308;
+    border: 1px solid rgba(234, 179, 8, 0.4);
+}
+
+.feature-badge.vip {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.feature-badge::before {
+    content: "✓";
+    font-weight: bold;
+}
+
 /* Media Queries */
+@media (min-width: 769px) {
+    .bot-cards-grid {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .pricing-cards {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .pricing-card {
+        min-width: 350px;
+    }
+}
+
 @media (max-width: 1000px) {
     .bot-cards-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -1507,6 +1626,31 @@ body {
 @media (max-width: 768px) {
     .container {
         padding: 15px;
+    }
+
+    .announcement-section {
+        margin: 15px -10px;
+        padding: 15px 20px;
+        width: calc(100% + 20px);
+    }
+
+    .announcement-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .announcement-text p {
+        font-size: 0.9rem;
+    }
+
+    .announcement-features {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feature-badge {
+        font-size: 0.8rem;
+        padding: 5px 12px;
     }
 
     .header-section {
