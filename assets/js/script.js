@@ -27,7 +27,7 @@ function handlePageTransition(e) {
     const href = e.currentTarget.getAttribute('href');
 
     // Only handle internal page transitions (clean URLs)
-    if (href && (href === '/' || href === '/store' || href.endsWith('.html'))) {
+    if (href && (href === '/' || href === '/store' || href === '/code' || href.endsWith('.html'))) {
         e.preventDefault();
 
         // Add exit animation
@@ -42,7 +42,7 @@ function handlePageTransition(e) {
 
 // Add transition handler to all internal links
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href="/"], a[href="/store"], a[href$=".html"]').forEach(link => {
+    document.querySelectorAll('a[href="/"], a[href="/store"], a[href="/code"], a[href$=".html"]').forEach(link => {
         // Skip anchor links
         if (!link.getAttribute('href').includes('#')) {
             link.addEventListener('click', handlePageTransition);
