@@ -2817,10 +2817,16 @@ body {
 
     .header-left .glass-btn,
     .header-right .glass-btn {
-        padding: 4px 8px;
-        font-size: 0.6rem;
-        min-width: 50px;
-        gap: 3px;
+        padding: 0;
+        font-size: 0.65rem;
+        min-width: 45px;
+        gap: 2px;
+    }
+
+    .header-left .glass-btn .inner-content,
+    .header-right .glass-btn .inner-content {
+        padding: 6px 10px;
+        font-size: 0.7rem;
     }
 
     .header-left .btn-text {
@@ -3119,9 +3125,11 @@ body {
     }
 
     .header-top-right .pricing-btn,
-    .header-top-left .store-btn {
-        padding: 3px 6px;
-        font-size: 0.6rem;
+    .header-top-left .store-btn,
+    .header-left .glass-btn .inner-content,
+    .header-right .glass-btn .inner-content {
+        padding: 4px 6px;
+        font-size: 0.65rem;
         border-radius: 6px;
     }
 }
