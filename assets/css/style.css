@@ -596,7 +596,6 @@ body {
 }
 
 .bot-card-mini:hover {
-    transform: translateY(-2px);
     border-color: rgba(56, 189, 248, 0.5);
 }
 
@@ -607,7 +606,6 @@ body {
 }
 
 .bot-card-mini.active-bot:hover {
-    transform: translateY(-2px);
     border-color: rgba(34, 197, 94, 0.8);
 }
 
@@ -621,7 +619,6 @@ body {
 .bot-card-mini.coming-soon:hover {
     opacity: 0.8;
     border-color: rgba(156, 163, 175, 0.4);
-    transform: translateY(-2px);
 }
 
 /* Bot Avatar */
@@ -1060,7 +1057,6 @@ body {
 }
 
 .pricing-card:hover {
-    transform: translateY(-5px);
     border-color: rgba(56, 189, 248, 0.5);
     box-shadow:
         0 12px 40px rgba(56, 189, 248, 0.4),
@@ -1822,7 +1818,6 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
     border-color: rgba(56, 189, 248, 0.5);
     box-shadow:
         0 12px 40px rgba(56, 189, 248, 0.4),
@@ -2583,7 +2578,6 @@ body {
     }
 
     .pricing-card:hover {
-        transform: translateY(-3px);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
     }
 
@@ -2643,7 +2637,6 @@ body {
     }
 
     .pricing-card.premium-bundle:hover {
-        transform: translateY(-3px);
         box-shadow: 0 12px 30px rgba(168, 85, 247, 0.3);
         border-color: rgba(168, 85, 247, 0.6);
     }
@@ -3153,7 +3146,6 @@ body {
 
     /* Touch-friendly active states for mobile */
     .pricing-card:active {
-        transform: translateY(-3px);
         border-color: rgba(56, 189, 248, 0.3);
         box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
         transition: all 0.2s ease;
@@ -3164,13 +3156,11 @@ body {
     }
 
     .pricing-card.premium-bundle:active {
-        transform: translateY(-3px);
         border-color: rgba(168, 85, 247, 0.6);
         box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
     }
 
     .pricing-card.popular:active {
-        transform: translateY(-3px);
         border-color: rgba(34, 197, 94, 0.6);
         box-shadow: 0 15px 40px rgba(34, 197, 94, 0.2);
     }
