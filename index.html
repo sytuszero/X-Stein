@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>X Stein - بوتات تليكرام مدعومة بالذكاء الاصطناعي</title>
+
+    <!-- Telegram Mini App Configuration -->
+    <meta name="telegram-mini-app" content="true">
+    <meta name="telegram-web-app" content="true">
+    <meta name="theme-color" content="#1e293b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="X Stein - اكس شتاين - بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي. Quiz Bot, PDF Editor, Translation Bot. AI-powered Telegram bots for education and productivity. بوتات تليكرام للأسئلة والترجمة وتحرير PDF">
+    <meta name="keywords"
+        content="telegram bot, AI bot, quiz bot, PDF editor bot, translation bot, mind mapping bot, telegram mini app, telegram web app, chatbot, educational bot, productivity bot, artificial intelligence, machine learning, بوت تليكرام, بوت ذكي, بوت أسئلة, بوت PDF, بوت ترجمة, بوت خرائط ذهنية, اكس شتاين, X Stein, تليجرام, تليكرام, بوتات ذكية, ذكاء اصطناعي, روبوتات, بوت تعليمي, بوت إنتاجية">
+    <meta name="author" content="X Stein Agency - اكس شتاين">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="ar, en">
+    <meta name="geo.region" content="IQ">
+    <meta name="geo.country" content="Iraq">
+    <meta name="geo.placename" content="Iraq">
+    <meta name="rating" content="General">
+    <meta name="distribution" content="Global">
+    <meta name="revisit-after" content="1 days">
+    <meta name="expires" content="never">
+    <meta name="copyright" content="X Stein Agency - اكس شتاين 2025">
+    <meta name="owner" content="X Stein Agency - اكس شتاين">
+    <meta name="url" content="https://xstein.site">
+    <meta name="identifier-URL" content="https://xstein.site">
+    <meta name="directory" content="submission">
+    <meta name="category" content="Technology, Education, AI, Bots, Telegram, Chatbots">
+    <meta name="coverage" content="Worldwide">
+    <meta name="target" content="all">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="theme-color" content="#1e293b">
+    <meta name="msapplication-navbutton-color" content="#1e293b">
+    <meta name="msapplication-TileColor" content="#1e293b">
+    <meta name="msapplication-TileImage" content="Xstein2.png">
+    <meta name="msapplication-TileImage:alt" content="X Stein AI Bots - اكس شتاين">
+    <meta name="application-name" content="X Stein Bots - اكس شتاين">
+    <meta name="apple-mobile-web-app-title" content="X Stein Bots - اكس شتاين">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; img-src 'self' data: https:; font-src 'self' https:; style-src 'self' 'unsafe-inline' https:;">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="X Stein - اكس شتاين - AI-Powered Telegram Bots | بوتات تليكرام ذكية">
+    <meta property="og:description"
+        content="Advanced AI Telegram bots: Quiz Bot, PDF Editor, Translation Bot, Mind Mapping Bot. بوتات تليكرام مدعومة بالذكاء الاصطناعي للتعليم والإنتاجية - اكس شتاين">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xstein.site">
+    <meta property="og:image" content="https://xstein.site/Xstein2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"
+        content="X Stein AI Bots Logo - اكس شتاين - بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:secure_url" content="https://xstein.site/Xstein2.png">
+    <meta property="og:site_name" content="X Stein - اكس شتاين">
+    <meta property="og:locale" content="ar_IQ">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="X Stein - اكس شتاين - AI-Powered Telegram Bots">
+    <meta name="twitter:description"
+        content="Advanced AI Telegram bots: Quiz Bot, PDF Editor, Translation Bot. بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي">
+    <meta name="twitter:image" content="https://xstein.site/Xstein2.png">
+    <meta name="twitter:image:alt" content="X Stein AI Bots - اكس شتاين - بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي">
+    <meta name="twitter:site" content="@x_stein">
+    <meta name="twitter:creator" content="@xstein_agency">
+
+    <!-- Search Engine Verification -->
+    <meta name="google-site-verification" content="HjFJ8khFMOUcvTnAOYh_h2HUWnE9GLT5sCvKnOpygtM">
+
+    <!-- Canonical & Alternate Tags -->
+    <link rel="canonical" href="https://xstein.site">
+    <link rel="alternate" hreflang="ar" href="https://xstein.site">
+    <link rel="alternate" hreflang="en" href="https://xstein.site">
+    <link rel="alternate" hreflang="x-default" href="https://xstein.site">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "X Stein Bots",
+      "alternateName": "بوتات اكس شتاين",
+      "description": "AI-powered Telegram bots for education and productivity - بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Telegram",
+      "url": "https://xstein.site",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://xstein.site/Xstein2.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "X Stein AI Bots Logo - اكس شتاين",
+        "description": "بوتات تليكرام ذكية مدعومة بالذكاء الاصطناعي - AI-powered Telegram bots for education and productivity"
+      },
+      "screenshot": {
+        "@type": "ImageObject",
+        "url": "https://xstein.site/Xstein2.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "X Stein AI Bots Screenshot - اكس شتاين"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IQD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Quiz Bot with AI - بوت الأسئلة بالذكاء الاصطناعي",
+        "PDF Editor Bot - بوت تحرير PDF المتقدم", 
+        "Translation Bot - بوت الترجمة من الصور",
+        "Mind Mapping Bot - بوت الخرائط الذهنية"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "X Stein Agency - اكس شتاين",
+        "url": "https://xstein.site"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "X Stein Agency - اكس شتاين",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://xstein.site/Xstein2.png"
+        }
+      },
+      "keywords": "telegram bot, AI bot, quiz bot, PDF bot, translation bot, mind mapping bot, chatbot, educational bot, productivity bot, artificial intelligence, machine learning, بوت تليكرام, بوت ذكي, بوت أسئلة, بوت PDF, بوت ترجمة, بوت خرائط ذهنية, اكس شتاين, X Stein, تليجرام, تليكرام, بوتات ذكية, ذكاء اصطناعي, روبوتات, بوت تعليمي, بوت إنتاجية"
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/Xstein2.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/Xstein2.png">
+    <link rel="apple-touch-icon" href="assets/images/Xstein2.png">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="header-left">
+                    <a href="/store" class="btn store-btn glass-btn star-border-container">
+                        <div class="border-gradient-bottom white"></div>
+                        <div class="border-gradient-top white"></div>
+                        <div class="inner-content">
+                            <i class="fas fa-shopping-bag"></i> المتجر
+                        </div>
+                    </a>
+                    <a href="/code" class="btn code-btn glass-btn star-border-container">
+                        <div class="border-gradient-bottom purple"></div>
+                        <div class="border-gradient-top purple"></div>
+                        <div class="inner-content">
+                            <i class="fas fa-code"></i> Code <span class="code-tag-symbol">&lt;/&gt;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="header-center">
+                    <a href="/">
+                        <img src="assets/images/XStein.png" alt="X Stein Logo" class="header-logo">
+                    </a>
+                </div>
+                <div class="header-right">
+                    <a href="https://t.me/x_stein" class="btn join-channel-btn glass-btn star-border-container"
+                        target="_blank" rel="noopener">
+                        <div class="border-gradient-bottom blue"></div>
+                        <div class="border-gradient-top blue"></div>
+                        <div class="inner-content">
+                            <img src="https://img.icons8.com/?size=100&amp;id=jZ1z64hEYYLW&amp;format=png&amp;color=FFFFFF"
+                                alt="Robot Icon" class="btn-robot-icon"> انضم للقناة
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <!-- Bot Cards Section -->
+            <div class="bot-cards-container">
+                <div class="cards-header">
+                    <h2>البوتات المتاحة 🤖</h2>
+                </div>
+
+                <div class="bot-cards-grid">
+                    <div class="bot-card-mini active-bot">
+                        <div class="bot-avatar-mini">
+                            <img src="assets/images/Quiz.jpg" alt="Quiz Bot" class="bot-avatar-image">
+                        </div>
+                        <h3>بوت الأسئلة</h3>
+                        <div class="bot-description-mini">
+                            <ul class="bot-description-list">
+                                <li>مدعوم بالذكاء الاصطناعي</li>
+                                <li>إنشاء اسئلة خيارات متعددة</li>
+                                <li>إنشاء اسئلة صح/خطأ تلقائياً</li>
+                                <li>حفظ واعادة استخدام الاختبارات</li>
+                                <li>تحليل أداء الطالب</li>
+                            </ul>
+                        </div>
+                        <div class="bot-features-mini">
+                            <span class="bot-feature-mini">🔠 MCQ</span>
+                            <span class="bot-feature-mini">✗✓ T/F</span>
+                        </div>
+                        <a href="https://t.me/MCQTFAIbot" class="chat-btn-mini telegram-btn star-border-container"
+                            target="_blank" rel="noopener">
+                            <div class="border-gradient-bottom blue"></div>
+                            <div class="border-gradient-top blue"></div>
+                            <div class="inner-content">
+                                <i class="fab fa-telegram-plane"></i> ابدأ على التليكرام
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bot-card-mini active-bot">
+                        <div class="bot-avatar-mini">
+                            <img src="assets/images/pdf.jpg" alt="PDF Editor" class="bot-avatar-image">
+                        </div>
+                        <h3>محرر PDF</h3>
+                        <div class="bot-description-mini">
+                            <ul class="bot-description-list">
+                                <li>محرر ملفات PDF المتقدم</li>
+                                <li>تحويل الصور إلى ملفات PDF</li>
+                                <li>تقسيم ملفات PDF الموجودة</li>
+                                <li>ترتيب الصور قبل إنشاء PDF</li>
+                                <li>إضافة وحذف الصفحات بسهولة</li>
+                            </ul>
+                        </div>
+                        <div class="bot-features-mini">
+                            <span class="bot-feature-mini"><i class="fas fa-edit"></i> تحرير</span>
+                            <span class="bot-feature-mini"><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                        <a href="https://t.me/Pdf_manipulator_bot"
+                            class="chat-btn-mini telegram-btn star-border-container" target="_blank" rel="noopener">
+                            <div class="border-gradient-bottom blue"></div>
+                            <div class="border-gradient-top blue"></div>
+                            <div class="inner-content">
+                                <i class="fab fa-telegram-plane"></i> ابدأ على التليكرام
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Pricing Plans Section -->
+            <div class="pricing-section" id="pricing-section">
+                <div class="pricing-header">
+                    <h2>باقات X Stein المميزة</h2>
+                    <p>اجعل دراستك أسهل مع بوتاتنا المدعومة بالذكاء الاصطناعي</p>
+                </div>
+
+                <div class="pricing-cards">
+                    <!-- Free Plan -->
+                    <div class="pricing-card free-plan">
+                        <div class="plan-header">
+                            <h3>المجاني</h3>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>عدد الاسئلة اقل من 30 سؤال للملزمة</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>مدة انتظار 1 دقيقة بين ارسال الملفات</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>ارسال 6 ملفات في اليوم</span>
+                            </div>
+                            <div class="feature feature-yellow-check">
+                                <i class="fas fa-check"></i>
+                                <span>10 اسئلة خاطئة للمراجعة</span>
+                            </div>
+                            <div class="feature disabled">
+                                <i class="fas fa-times"></i>
+                                <span>أولوية في المعالجة</span>
+                            </div>
+                            <div class="feature disabled">
+                                <i class="fas fa-times"></i>
+                                <span>حفظ الاختبارات</span>
+                            </div>
+                            <div class="feature disabled">
+                                <i class="fas fa-times"></i>
+                                <span>تحميل الاختبارات كملف PDF</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price free-price">مجاني</span>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Bot VIP Plan -->
+                    <div class="pricing-card vip-plan popular">
+                        <div class="popular-badge">الأكثر شعبية</div>
+                        <div class="plan-header">
+                            <h3>بوت الأسئلة VIP</h3>
+                            <p class="plan-duration">شهر واحد</p>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>عدد الاسئلة اكثر من 40 سؤال للملزمة</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>لا توجد مدة انتظار</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>ارسال 30 ملف يومياً</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>اسئلة خاطئة للمراجعة بلا حدود</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>أولوية في المعالجة</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>حفظ الاختبارات</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>تحميل الاختبارات كملف PDF</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price">5,000</span>
+                            <span class="currency">دينار عراقي</span>
+                        </div>
+                        <a href="https://t.me/xstein_agency" class="plan-buy-btn star-border-container" target="_blank"
+                            rel="noopener">
+                            <div class="border-gradient-bottom blue"></div>
+                            <div class="border-gradient-top blue"></div>
+                            <div class="inner-content">
+                                <i class="fab fa-telegram-plane"></i> اشترك الآن
+                            </div>
+                        </a>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+            <!-- Video Demo Section -->
+            <div class="video-section">
+                <div class="video-header">
+                    <div class="comparison-container">
+                        <div class="comparison-item quiz-bot">
+                            <div class="comparison-content">
+                                <h3>Quiz Bot</h3>
+                                <div class="comparison-feature">
+                                    <span class="feature-number"><span dir="ltr">6</span></span>
+                                    <span class="feature-text">ملفات في اليوم</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-vs">
+                            <span>VS</span>
+                        </div>
+
+                        <div class="comparison-item chatgpt">
+                            <div class="comparison-content">
+                                <h3>ChatGPT</h3>
+                                <div class="comparison-feature">
+                                    <span class="feature-number"><span dir="ltr">3</span></span>
+                                    <span class="feature-text">ملفات في اليوم</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-container">
+                    <iframe width="100%" height="100%"
+                        src="https://www.youtube.com/embed/qGNhBCKMyXQ?si=_s_h0Q3TubNB6D2L&origin=https://xstein.site"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen title="YouTube video player">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>&copy; X Stein Agency 2025</p>
+
+                    <!-- Desktop Footer Elements -->
+                    <div class="desktop-footer">
+                        <!-- Payment Methods -->
+                        <div class="payment-methods">
+                            <div class="payment-icon custom-payment">
+                                <img src="assets/images/Zain cash.png" alt="Zain Cash" class="payment-image">
+                            </div>
+                            <div class="payment-icon custom-payment">
+                                <img src="assets/images/SuperQI.png" alt="SuperQI" class="payment-image">
+                            </div>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="footer-separator"></div>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/xstein.ai" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://t.me/x_stein" target="_blank" class="social-link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@Xstein-ai" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Footer Row -->
+                    <div class="footer-row">
+                        <!-- Payment Methods -->
+                        <div class="payment-methods">
+                            <div class="payment-icon custom-payment">
+                                <img src="assets/images/Zain cash.png" alt="Zain Cash" class="payment-image">
+                            </div>
+                            <div class="payment-icon custom-payment">
+                                <img src="assets/images/SuperQI.png" alt="SuperQI" class="payment-image">
+                            </div>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="footer-separator"></div>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/xstein.ai" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://t.me/x_stein" target="_blank" class="social-link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@Xstein-ai" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Telegram Web App Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
