@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <script>
+        (function() {
+            var theme = localStorage.getItem('zeroiqs_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amir Ali · ZeroCleaner & EXPDF</title>
@@ -117,24 +123,160 @@
             position: fixed;
             inset: 0;
             z-index: 99999;
-            background: #050a18;
+            background: var(--bg-deep);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.7s ease;
+            overflow: hidden;
         }
 
-        .loader-spinner {
-            width: 44px;
-            height: 44px;
-            border: 3px solid rgba(218, 119, 86, 0.2);
-            border-top-color: #da7756;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
+
+        /* Grid dots background for loader */
+        .loader-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(218, 119, 86, 0.12) 1px, transparent 1px);
+            background-size: 32px 32px;
+            animation: gridPulse 4s ease-in-out infinite;
+            z-index: 0;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.4; }
+            50%       { opacity: 0.9; }
+        }
+
+        /* Central logo/monogram */
+        .loader-monogram {
+            position: relative;
+            z-index: 3;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            text-shadow: 0 0 40px rgba(218,119,86,0.5), 0 0 80px rgba(218,119,86,0.2);
+            animation: loaderPulse 2.2s ease-in-out infinite alternate;
+            margin-bottom: 0.4rem;
+        }
+
+        @keyframes loaderPulse {
+            from { text-shadow: 0 0 30px rgba(218,119,86,0.4), 0 0 60px rgba(218,119,86,0.1); }
+            to   { text-shadow: 0 0 60px rgba(218,119,86,0.8), 0 0 120px rgba(218,119,86,0.35), 0 0 8px rgba(255,255,255,0.6); }
+        }
+
+        /* Glitch effect on monogram */
+        .loader-monogram::before,
+        .loader-monogram::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+        }
+
+        .loader-monogram::before {
+            color: #38bdf8;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+            transform: translateX(-3px);
+            animation: glitchTop 4s steps(1) infinite;
+            opacity: 0.7;
+        }
+
+        .loader-monogram::after {
+            color: #f472b6;
+            clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+            transform: translateX(3px);
+            animation: glitchBottom 4s steps(1) infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes glitchTop {
+            0%, 80%, 100% { transform: translateX(0); opacity: 0; }
+            82%  { transform: translateX(-4px); opacity: 0.7; }
+            84%  { transform: translateX(3px);  opacity: 0.7; }
+            86%  { transform: translateX(-2px); opacity: 0.7; }
+            88%  { transform: translateX(0);    opacity: 0; }
+        }
+
+        @keyframes glitchBottom {
+            0%, 85%, 100% { transform: translateX(0); opacity: 0; }
+            87%  { transform: translateX(4px);  opacity: 0.7; }
+            89%  { transform: translateX(-3px); opacity: 0.7; }
+            91%  { transform: translateX(2px);  opacity: 0.7; }
+            93%  { transform: translateX(0);    opacity: 0; }
+        }
+
+        /* System tag line */
+        .loader-tagline {
+            position: relative;
+            z-index: 3;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.62rem, 1.5vw, 0.8rem);
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(218, 119, 86, 0.9);
+            margin-bottom: 2.8rem;
+        }
+
+        /* Progress bar container */
+        .loader-progress-track {
+            position: relative;
+            z-index: 3;
+            width: clamp(240px, 40vw, 420px);
+            height: 2px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 1.4rem;
+        }
+
+        .loader-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #da7756, #f0a882, #38bdf8);
+            border-radius: 99px;
+            box-shadow: 0 0 12px rgba(218,119,86,0.7);
+            animation: fillProgress 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fillProgress {
+            0%   { width: 0%; }
+            25%  { width: 28%; }
+            55%  { width: 62%; }
+            80%  { width: 88%; }
+            100% { width: 100%; }
+        }
+
+        /* Log lines */
+        .loader-log {
+            position: relative;
+            z-index: 3;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.58rem, 1.2vw, 0.7rem);
+            color: rgba(255,255,255,0.28);
+            letter-spacing: 0.05em;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .loader-log-line {
+            opacity: 0;
+            animation: logFadeIn 0.35s ease forwards;
+        }
+
+        .loader-log-line:nth-child(1) { animation-delay: 0.4s; }
+        .loader-log-line:nth-child(2) { animation-delay: 1.0s; }
+        .loader-log-line:nth-child(3) { animation-delay: 1.7s; }
+        .loader-log-line:nth-child(4) { animation-delay: 2.4s; }
+
+        @keyframes logFadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== FUTURISTIC GLASS & BLURRY CODE BACKGROUND ===== */
@@ -548,6 +690,72 @@
             padding: 5rem 3rem 4rem;
         }
 
+        /* ===== SHARED 3D CANVAS STAGE ===== */
+        .shared-canvas-stage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(0%, -50%);
+            width: calc(50% - 1.5rem);
+            max-width: 560px;
+            height: 720px;
+            z-index: 15;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1280px) {
+            .shared-canvas-stage {
+                left: 50%;
+                width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shared-canvas-stage {
+                position: fixed !important;
+                top: 3.5rem !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 180px !important;
+                margin: 0 !important;
+                opacity: 1 !important;
+                z-index: 20 !important;
+                pointer-events: auto !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: opacity 0.35s ease !important;
+            }
+
+            .particle-3d-wrapper {
+                height: 180px !important;
+                min-height: 180px !important;
+                max-height: 180px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                position: relative !important;
+            }
+
+            #particle-3d-canvas {
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                width: 100% !important;
+                height: 180px !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                opacity: 1 !important;
+            }
+        }
+
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -783,6 +991,11 @@
             left: 2.5rem;
         }
 
+        html[dir="rtl"] .shared-canvas-stage {
+            left: auto;
+            right: 50%;
+        }
+
         .counter-current {
             font-size: 1.15rem;
             color: var(--accent);
@@ -883,7 +1096,24 @@
 
         /* ===== LIGHT THEME ===== */
         [data-theme="light"] body {
-            background: #eef2f7;
+            background: var(--bg-deep);
+        }
+
+        [data-theme="light"] .loader-monogram {
+            color: #0f172a;
+            text-shadow: none !important;
+        }
+
+        [data-theme="light"] .loader-progress-track {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .loader-log {
+            color: rgba(15, 23, 42, 0.5);
+        }
+
+        [data-theme="light"] .loader-grid {
+            background-image: radial-gradient(rgba(218, 119, 86, 0.08) 1px, transparent 1px);
         }
 
         [data-theme="light"] #main-header,
@@ -1297,105 +1527,92 @@
             .action-btn, .lang-btn {
                 padding: 0.38rem 0.55rem;
                 font-size: 0.74rem;
-                gap: 0.3rem;
+                padding: 0.32rem 0.55rem !important;
+                font-size: 0.7rem !important;
             }
 
-            /* Content Layout - 100% Viewport Fit */
+            .tab-btn i {
+                font-size: 0.68rem !important;
+            }
+
             .section-content {
-                padding: 0 !important;
+                padding: 15rem 0.75rem 2.0rem !important;
                 width: 100% !important;
-                max-height: calc(100vh - 6.2rem) !important;
+                height: 100vh !important;
+                max-height: 100vh !important;
                 display: flex !important;
-                align-items: center !important;
+                flex-direction: column !important;
                 justify-content: center !important;
+                align-items: center !important;
+                overflow: hidden !important;
             }
 
             .content-grid {
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: space-evenly !important;
+                justify-content: center !important;
                 align-items: center !important;
-                gap: 0.35rem !important;
+                gap: 0.2rem !important;
                 width: 100% !important;
-                height: 100% !important;
+                height: auto !important;
                 text-align: center !important;
             }
 
             .content-info {
-                gap: 0.4rem !important;
+                position: relative !important;
+                z-index: 10 !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-evenly !important;
                 align-items: center !important;
+                gap: 0.2rem !important;
             }
 
             .content-badge {
-                font-size: 0.7rem;
-                letter-spacing: 1px;
+                font-size: 0.68rem !important;
+                letter-spacing: 0.5px !important;
             }
 
             .content-title {
-                font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
-                letter-spacing: -0.5px;
+                font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
+                letter-spacing: -0.5px !important;
             }
 
             .content-subtitle {
-                font-size: clamp(0.85rem, 3.2vw, 1rem) !important;
+                font-size: clamp(0.8rem, 2.8vw, 0.92rem) !important;
             }
 
             .content-desc {
-                font-size: clamp(0.76rem, 2.7vw, 0.86rem) !important;
-                line-height: 1.45 !important;
+                font-size: clamp(0.72rem, 2.4vw, 0.82rem) !important;
+                line-height: 1.4 !important;
                 max-width: 95% !important;
                 margin: 0 auto !important;
             }
 
             .content-bullets {
-                gap: 0.3rem 0.5rem !important;
+                gap: 0.25rem 0.45rem !important;
                 justify-content: center !important;
             }
 
             .bullet-chip {
-                font-size: 0.7rem !important;
-                padding: 0.25rem 0.55rem !important;
+                font-size: 0.68rem !important;
+                padding: 0.2rem 0.45rem !important;
             }
 
             .content-actions {
                 width: 100% !important;
-                gap: 0.45rem !important;
+                gap: 0.4rem !important;
                 margin-top: 0.2rem !important;
                 justify-content: center !important;
             }
 
             .btn-primary, .btn-ghost {
-                padding: 0.45rem 0.85rem !important;
-                font-size: 0.76rem !important;
+                padding: 0.4rem 0.75rem !important;
+                font-size: 0.74rem !important;
                 flex: 0 1 auto !important;
-                min-width: 105px !important;
+                min-width: 95px !important;
                 justify-content: center !important;
-            }
-
-            /* 3D Canvas Responsive Fitting - Fixed Identical Position Across All Slides */
-            .particle-3d-wrapper {
-                height: 190px !important;
-                min-height: 190px !important;
-                max-height: 190px !important;
-                width: 100% !important;
-                max-width: 360px !important;
-                margin: 0 auto !important;
-                order: -1 !important;
-                flex-shrink: 0 !important;
-                position: relative !important;
-            }
-
-            #particle-3d-canvas,
-            #particle-zc-canvas,
-            #particle-pdf-canvas {
-                position: absolute !important;
-                top: 50% !important;
-                left: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                width: 360px !important;
-                height: 190px !important;
-                max-width: 100% !important;
-                max-height: 100% !important;
             }
 
             /* Navigation Arrows */
@@ -1458,8 +1675,64 @@
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
-        <div class="loader-spinner"></div>
+        <div class="loader-grid"></div>
+        <div class="loader-monogram" data-text="ZeroIQ">ZeroIQ</div>
+        <div class="loader-tagline">Initializing System...</div>
+        <div class="loader-progress-track">
+            <div class="loader-progress-fill"></div>
+        </div>
+        <div class="loader-log">
+            <div class="loader-log-line">&gt; SYS_CORE.INIT ............. OK</div>
+            <div class="loader-log-line">&gt; LOADING_3D_ENGINE ......... OK</div>
+            <div class="loader-log-line">&gt; ZEROCLEANER_MODULE ........ READY</div>
+            <div class="loader-log-line">&gt; EXPDF_ENGINE .............. READY</div>
+        </div>
     </div>
+    <script>
+        (function() {
+            var el = document.querySelector('.loader-monogram');
+            if (!el) return;
+            var orig = 'ZeroIQ';
+            var chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+            var scrambling = false;
+
+            function scramble(duration) {
+                if (scrambling) return;
+                scrambling = true;
+                var start = performance.now();
+                function tick(now) {
+                    var elapsed = now - start;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var revealed = Math.floor(progress * orig.length);
+                    var out = '';
+                    for (var i = 0; i < orig.length; i++) {
+                        if (orig[i] === ' ') { out += ' '; }
+                        else if (i < revealed) { out += orig[i]; }
+                        else { out += chars[Math.floor(Math.random() * chars.length)]; }
+                    }
+                    el.textContent = out;
+                    if (progress < 1) { requestAnimationFrame(tick); }
+                    else { el.textContent = orig; scrambling = false; }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            // Fire immediately then repeat with a 2-second pause (2700ms interval)
+            scramble(700);
+            var iv = setInterval(function() {
+                scramble(700);
+            }, 2700);
+
+            // Stop when loader removed
+            var obs = new MutationObserver(function() {
+                if (!document.getElementById('loading-screen')) {
+                    clearInterval(iv);
+                    obs.disconnect();
+                }
+            });
+            obs.observe(document.body, { childList: true });
+        })();
+    </script>
 
     <!-- Futuristic Dot Grid Background -->
     <div class="futuristic-grid-bg"></div>
@@ -1532,6 +1805,13 @@
     <!-- Fullscreen Hero Slider Container -->
     <main id="slider-main">
 
+        <!-- Single Shared Fixed 3D Particle Canvas (Visible Across All 3 Slides!) -->
+        <div class="shared-canvas-stage">
+            <div class="content-preview particle-3d-wrapper">
+                <canvas id="particle-3d-canvas"></canvas>
+            </div>
+        </div>
+
         <!-- Slide 1: About Amir Ali -->
         <section class="hero-slide active-slide" id="slide-0">
             <div class="section-content">
@@ -1563,11 +1843,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- Right Side Weightless 3D Particle Canvas (No Container Box!) -->
-                    <div class="content-preview particle-3d-wrapper anim-item">
-                        <canvas id="particle-3d-canvas"></canvas>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1594,11 +1869,6 @@
                                 <i class="fa-brands fa-github"></i> <span>Download Tool from GitHub</span>
                             </a>
                         </div>
-                    </div>
-
-                    <!-- ZeroCleaner 3D Particle Canvas -->
-                    <div class="content-preview particle-3d-wrapper anim-item">
-                        <canvas id="particle-zc-canvas"></canvas>
                     </div>
                 </div>
             </div>
@@ -1627,11 +1897,6 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Open EXPDF (expdf.space)</span>
                             </a>
                         </div>
-                    </div>
-
-                    <!-- EXPDF 3D Particle Canvas -->
-                    <div class="content-preview particle-3d-wrapper anim-item">
-                        <canvas id="particle-pdf-canvas"></canvas>
                     </div>
                 </div>
             </div>
@@ -2203,7 +2468,7 @@
 
             var scene = new THREE.Scene();
             var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-            camera.position.set(0, 0, window.innerWidth <= 768 ? 5.0 : 7.2);
+            camera.position.set(0, 0, window.innerWidth <= 768 ? 4.0 : 7.2);
             camera.lookAt(0, 0, 0);
 
             var renderer = new THREE.WebGLRenderer({ canvas: canvas3d, alpha: true, antialias: true });
@@ -2215,10 +2480,14 @@
             var githubHomePos    = sampleIconBitmapParticles('github', PARTICLE_COUNT);
             var telegramHomePos  = sampleIconBitmapParticles('telegram', PARTICLE_COUNT);
             var instagramHomePos = sampleIconBitmapParticles('instagram', PARTICLE_COUNT);
+            var shieldHomePos    = sampleIconBitmapParticles('shield', PARTICLE_COUNT);
+            var pdfHomePos       = sampleIconBitmapParticles('pdf', PARTICLE_COUNT);
 
             var githubColors    = generateGradientColors(githubHomePos, PARTICLE_COUNT, '#fdba74', '#7dd3fc', '#ffffff');
             var telegramColors  = generateGradientColors(telegramHomePos, PARTICLE_COUNT, '#38bdf8', '#a5b4fc', '#e0e7ff');
             var instagramColors = generateGradientColors(instagramHomePos, PARTICLE_COUNT, '#f472b6', '#fdba74', '#fde047');
+            var shieldColors    = generateGradientColors(shieldHomePos, PARTICLE_COUNT, '#6ee7b7', '#38bdf8', '#a5f3fc');
+            var pdfColors       = generateGradientColors(pdfHomePos, PARTICLE_COUNT, '#a855f7', '#ec4899', '#ffffff');
 
             var targetHomePos  = new Float32Array(githubHomePos);
             var desiredHomePos = new Float32Array(githubHomePos);
@@ -2307,7 +2576,7 @@
             window.addEventListener('resize', function() {
                 var d = getCanvasDims(container);
                 camera.aspect = d.w / d.h;
-                camera.position.z = window.innerWidth <= 768 ? 5.0 : 7.2;
+                camera.position.z = window.innerWidth <= 768 ? 4.0 : 7.2;
                 camera.updateProjectionMatrix();
                 renderer.setSize(d.w, d.h);
             });
@@ -2422,6 +2691,14 @@
             window.telegramColorsRef = telegramColors;
             window.instagramHomePosRef = instagramHomePos;
             window.instagramColorsRef = instagramColors;
+            window.shieldHomePosRef = shieldHomePos;
+            window.shieldColorsRef = shieldColors;
+            window.pdfHomePosRef = pdfHomePos;
+            window.pdfColorsRef = pdfColors;
+
+            var githubBtn   = document.querySelector('.content-actions a[href*="github"]');
+            var telegramBtn = document.querySelector('.content-actions a[href*="t.me"]');
+            var instaBtn    = document.querySelector('.content-actions a[href*="instagram"]');
 
             if (githubBtn) {
                 githubBtn.addEventListener('mouseenter', function() {
@@ -2789,7 +3066,6 @@
             if (iBtn) iBtn.classList.toggle('substep-active', socialSubStep === 2);
 
             if (!skipMorph && window.morphToShapeRef) {
-                var pColor = '#ffffff';
                 if (socialSubStep === 0 && window.githubHomePosRef) {
                     playParticleMorphSound('github');
                     window.morphToShapeRef(window.githubHomePosRef, window.githubColorsRef, '3D PARTICLE MESH // GITHUB');
@@ -2806,7 +3082,9 @@
         init3dParticleMesh();
         setSocialSubStep(0, true);
         initZeroCleanerParticles();
+        if (window.startZCParticles) window.startZCParticles();
         initExpdfParticles();
+        if (window.startPDFParticles) window.startPDFParticles();
 
         var slides       = document.querySelectorAll('.hero-slide');
         var tabBtns      = document.querySelectorAll('.tab-btn');
@@ -2830,17 +3108,17 @@
             // Update state
             currentSlide = index;
 
-            // Reset or initialize social sub-step when arriving at Slide 0
-            if (currentSlide === 0) {
-                setSocialSubStep(dir < 0 ? 2 : 0);
-                if (window.stopZCParticles) window.stopZCParticles();
-                if (window.stopPDFParticles) window.stopPDFParticles();
-            } else if (currentSlide === 1) {
-                if (window.startZCParticles) window.startZCParticles();
-                if (window.stopPDFParticles) window.stopPDFParticles();
-            } else if (currentSlide === 2) {
-                if (window.startPDFParticles) window.startPDFParticles();
-                if (window.stopZCParticles) window.stopZCParticles();
+            // Fluidly morph 3D particle mesh on single shared canvas across all slides!
+            if (window.morphToShapeRef) {
+                if (currentSlide === 0) {
+                    setSocialSubStep(dir < 0 ? 2 : 0);
+                } else if (currentSlide === 1 && window.shieldHomePosRef) {
+                    playParticleMorphSound('github');
+                    window.morphToShapeRef(window.shieldHomePosRef, window.shieldColorsRef, '3D PARTICLE MESH // ZEROCLEANER SHIELD');
+                } else if (currentSlide === 2 && window.pdfHomePosRef) {
+                    playParticleMorphSound('github');
+                    window.morphToShapeRef(window.pdfHomePosRef, window.pdfColorsRef, '3D PARTICLE MESH // EXPDF TOOL');
+                }
             }
 
             // Update UI indicators
@@ -2886,12 +3164,31 @@
             );
         }
 
-        // Header Tab button click
+        // Header Tab button click & hover particle morphing
         tabBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
                 var idx = parseInt(btn.getAttribute('data-section'), 10);
-                if (idx === 0) setSocialSubStep(0);
+                if (idx === 0) {
+                    setSocialSubStep(0);
+                } else if (idx === 1 && window.morphToShapeRef && window.shieldHomePosRef) {
+                    playParticleMorphSound('github');
+                    window.morphToShapeRef(window.shieldHomePosRef, window.shieldColorsRef, '3D PARTICLE MESH // ZEROCLEANER SHIELD');
+                } else if (idx === 2 && window.morphToShapeRef && window.pdfHomePosRef) {
+                    playParticleMorphSound('github');
+                    window.morphToShapeRef(window.pdfHomePosRef, window.pdfColorsRef, '3D PARTICLE MESH // EXPDF TOOL');
+                }
                 goToSlide(idx);
+            });
+
+            btn.addEventListener('mouseenter', function() {
+                var idx = parseInt(btn.getAttribute('data-section'), 10);
+                if (idx === 0 && window.morphToShapeRef && window.githubHomePosRef) {
+                    window.morphToShapeRef(window.githubHomePosRef, window.githubColorsRef, '3D PARTICLE MESH // GITHUB');
+                } else if (idx === 1 && window.morphToShapeRef && window.shieldHomePosRef) {
+                    window.morphToShapeRef(window.shieldHomePosRef, window.shieldColorsRef, '3D PARTICLE MESH // ZEROCLEANER SHIELD');
+                } else if (idx === 2 && window.morphToShapeRef && window.pdfHomePosRef) {
+                    window.morphToShapeRef(window.pdfHomePosRef, window.pdfColorsRef, '3D PARTICLE MESH // EXPDF TOOL');
+                }
             });
         });
 
@@ -3224,7 +3521,7 @@
         }
 
         // ==================== THEME MANAGEMENT ====================
-        var currentTheme = localStorage.getItem('zeroiqs_theme') || 'dark';
+        var currentTheme = localStorage.getItem('zeroiqs_theme') || 'light';
 
         function setTheme(theme, isInit) {
             var apply = function() {
@@ -3354,8 +3651,8 @@
             if (ls) {
                 setTimeout(function() {
                     ls.style.opacity = '0';
-                    setTimeout(function() { ls.remove(); }, 600);
-                }, 400);
+                    setTimeout(function() { ls.remove(); }, 900);
+                }, 3200);
             }
         });
 
