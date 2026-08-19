@@ -53,20 +53,7 @@
             --text-muted: #475569;
         }
 
-        [data-theme="light"] .bg-code-typing-container {
-            opacity: 0.50;
-            filter: blur(2.8px);
-        }
 
-        [data-theme="light"] .bg-typing-center {
-            color: #9a3412;
-            text-shadow: 0 0 10px rgba(154, 52, 18, 0.2);
-            font-weight: 700;
-        }
-
-        [data-theme="light"] .blur-code-line {
-            color: rgba(15, 23, 42, 0.35);
-        }
 
         [data-theme="light"] .bullet-chip,
         [data-theme="light"] .content-badge {
@@ -293,36 +280,7 @@
             opacity: 0.65;
         }
 
-        #blurry-code-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
 
-        .blur-code-line {
-            position: absolute;
-            font-family: var(--font-mono);
-            font-size: clamp(1.4rem, 3.2vw, 2.6rem);
-            font-weight: 800;
-            letter-spacing: 4px;
-            color: rgba(255, 255, 255, 0.16);
-            filter: blur(5px);
-            text-transform: uppercase;
-            user-select: none;
-            white-space: nowrap;
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
-
-        .b-code-1 { top: 14%; left: 6%; transform: rotate(-2deg); filter: blur(4px); }
-        .b-code-2 { top: 38%; left: 16%; font-size: clamp(2.2rem, 4.5vw, 3.8rem); filter: blur(7px); opacity: 0.09; letter-spacing: 8px; }
-        .b-code-3 { top: 64%; right: 8%; transform: rotate(1deg); filter: blur(5px); color: rgba(56, 189, 248, 0.18); }
-        .b-code-4 { top: 82%; left: 10%; filter: blur(6px); opacity: 0.12; }
-        .b-code-5 { top: 20%; right: 12%; filter: blur(8px); opacity: 0.08; font-size: clamp(2.5rem, 5.5vw, 4.2rem); }
-        .b-code-6 { top: 72%; left: 42%; filter: blur(4.5px); color: rgba(218, 119, 86, 0.16); }
-        .b-code-7 { top: 46%; right: 30%; filter: blur(6px); opacity: 0.1; }
 
         /* ===== THREE.JS GLASS CANVAS ===== */
         #three-glass-canvas {
@@ -477,39 +435,12 @@
             z-index: 0;
         }
 
-        /* ===== SINGLE CENTER AMBIENT CODE BACKDROP ===== */
-        .bg-code-typing-container {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-            opacity: 0.16;
-            filter: blur(2.5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        [data-theme="dark"] body::before,
+        [data-theme="dark"] body::after {
+            display: none;
         }
 
-        .bg-typing-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--font-mono);
-            font-size: 1.15rem;
-            color: var(--accent);
-            line-height: 1.75;
-            white-space: pre-wrap;
-            pointer-events: none;
-            letter-spacing: 0.5px;
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
-            text-shadow: 0 0 15px rgba(218, 119, 86, 0.4);
-        }
+
 
         /* ===== FLOATING HEADER (BUTTONS ONLY - NO CONTAINER BOX) ===== */
         #main-header {
@@ -1737,21 +1668,7 @@
     <!-- Futuristic Dot Grid Background -->
     <div class="futuristic-grid-bg"></div>
 
-    <!-- Blurry Floating Background Code & System Telemetry -->
-    <div id="blurry-code-bg">
-        <div class="blur-code-line b-code-1">// SYS_CORE.INIT -- 0x8F9A4C</div>
-        <div class="blur-code-line b-code-2">PRE_LOAD: OFF /2</div>
-        <div class="blur-code-line b-code-3">ZEROIQ_CACHE_CLEANER // DRIVE C: [SAFE]</div>
-        <div class="blur-code-line b-code-4">EXPDF_ENGINE // 100% LOCAL_PROCESSING</div>
-        <div class="blur-code-line b-code-5">AMIR_ALI // SYSTEM_DEVELOPER_PORTFOLIO</div>
-        <div class="blur-code-line b-code-6">TEMP 35.35°C // +01.86 THREAD_OK</div>
-        <div class="blur-code-line b-code-7">SYSTEM_STATUS :: ACTIVE [0x00A]</div>
-    </div>
 
-    <!-- Single Center Ambient Cyberpunk Blurred Background Code Typing -->
-    <div class="bg-code-typing-container">
-        <div class="bg-typing-block bg-typing-center" id="bgTypingCenter"></div>
-    </div>
 
     <!-- Corner HUD Telemetry -->
 
@@ -1936,15 +1853,7 @@
         // ==================== DEVICE DETECTION ====================
         const isMobile = window.innerWidth <= 768;
 
-        // Mouse subtle parallax for blurry background code
-        window.addEventListener('mousemove', function(e) {
-            var blurBg = document.getElementById('blurry-code-bg');
-            if (blurBg) {
-                var rx = (e.clientX / window.innerWidth - 0.5) * -12;
-                var ry = (e.clientY / window.innerHeight - 0.5) * -12;
-                blurBg.style.transform = 'translate(' + rx + 'px, ' + ry + 'px)';
-            }
-        });
+
 
         // ==================== ULTRA-CRISP ZERO-ZIGZAG RIBBON PAINTER TRAIL ====================
         (function initPainterTrail() {
@@ -3595,56 +3504,7 @@
                 });
             }
 
-            // Single Center Ambient Cyberpunk Code Typing Engine
-            (function initAmbientTerminals() {
-                var centerEl = document.getElementById('bgTypingCenter');
-                if (!centerEl) return;
 
-                var masterCmds = [
-                    "root@x-stein:~# ./sys_init.sh --kernel-v3 --verbose\n",
-                    "[INIT] Attaching WebGL 2.0 3D particle attractor engine...\n",
-                    "[SUCCESS] Bound 16,000 spatial nodes [GR38_MESH]\n",
-                    "root@x-stein:~# cargo build --release --target wasm32-unknown-unknown\n",
-                    "[COMPILING] rust_particle_math v3.2.0...\n",
-                    "[LINKING] WebAssembly binary generated (42 KB) -- 100% OK\n",
-                    "root@zerocleaner:~# zerocleaner --full-audit C:\\ --purge --force\n",
-                    "[SCAN] Scanning WinSxS & Temp telemetry caches...\n",
-                    "[PURGE] Reclaimed 2.84 GB disk space successfully\n",
-                    "root@expdf:~# expdf-cli parse --input ./document.pdf --format markdown\n",
-                    "[PDF] Extracting vector paths & text streams... [100% LOCAL]\n",
-                    "root@developer:~# git commit -m 'feat: 3d particle liquid vortex'\n",
-                    "[main 7b86b56] 2 files changed, 148 insertions(+), 12 deletions(-)\n",
-                    "SYSTEM_STATUS :: ACTIVE -- ALL SYSTEMS NOMINAL [0x8F9A4C]\n"
-                ];
-
-                var lineIdx = 0;
-                var charIdx = 0;
-                var maxLines = 8;
-                var currentLines = [];
-
-                function typeChar() {
-                    if (lineIdx >= masterCmds.length) lineIdx = 0;
-                    var line = masterCmds[lineIdx];
-
-                    if (charIdx === 0) {
-                        currentLines.push('');
-                        if (currentLines.length > maxLines) currentLines.shift();
-                    }
-
-                    currentLines[currentLines.length - 1] += line[charIdx];
-                    centerEl.textContent = currentLines.join('');
-                    charIdx++;
-
-                    if (charIdx < line.length) {
-                        setTimeout(typeChar, 22 + Math.random() * 15);
-                    } else {
-                        charIdx = 0;
-                        lineIdx++;
-                        setTimeout(typeChar, 450 + Math.random() * 300);
-                    }
-                }
-                typeChar();
-            })();
 
             // Dismiss loading screen
             var ls = document.getElementById('loading-screen');
